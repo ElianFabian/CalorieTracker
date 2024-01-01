@@ -6,7 +6,9 @@ import com.elian.calorietracker.features.tracker.domain.use_case.DeleteTrackedFo
 import com.elian.calorietracker.features.tracker.domain.use_case.GetFoodsForDateUseCase
 import com.elian.calorietracker.features.tracker.presentation.search.SearchKey
 import com.zhuinden.simplestack.Backstack
+import com.zhuinden.simplestack.Bundleable
 import com.zhuinden.simplestack.ScopedServices
+import com.zhuinden.statebundle.StateBundle
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -24,7 +26,8 @@ class TrackerOverviewViewModel(
 	private val deleteTrackedFood: DeleteTrackedFoodUseCase,
 	private val calculateMealNutrients: CalculateMealNutrientsUseCase,
 	private val serviceScope: ServiceScope = ServiceScope(),
-) : ScopedServices.Registered by serviceScope {
+) : ScopedServices.Registered by serviceScope,
+	Bundleable {
 
 	private val _eventFlow = MutableSharedFlow<TrackerOverviewEvent>()
 	val eventFlow = _eventFlow.asSharedFlow()
@@ -132,6 +135,26 @@ class TrackerOverviewViewModel(
 	private fun onFoodWasAdded() {
 		serviceScope.launch {
 			_eventFlow.emit(TrackerOverviewEvent.ScrollToTop)
+		}
+	}
+
+	override fun toBundle(): StateBundle {
+		val state = _state.value
+
+		return StateBundle().apply {
+			putSerializable("date", state.date)
+		}
+	}
+
+	override fun fromBundle(bundle: StateBundle?) {
+		if (bundle == null) {
+			return
+		}
+
+		val date = bundle.getSerializable("date") as LocalDate
+
+		_state.update {
+			it.copy(date = date)
 		}
 	}
 }
