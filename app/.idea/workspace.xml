@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="NONE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="d4e8a05d-6155-4cda-b8b6-bf10099ee367" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/elian/calorietracker/core/domain/model/ActivityLevel.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/elian/calorietracker/core/domain/model/AppPreferencesData.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/elian/calorietracker/core/domain/model/Gender.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/elian/calorietracker/core/domain/model/GoalType.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/elian/calorietracker/core/presentation/RootContainer.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/elian/calorietracker/core/presentation/ext/FlowExt.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/elian/calorietracker/core/presentation/ext/OffsetExt.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/elian/calorietracker/core/util/NutrientUtil.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/elian/calorietracker/core/util/TypeAliasses.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/elian/calorietracker/core/util/ext/StringExt.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/elian/calorietracker/core/util/simplestack/BackstackExt.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/elian/calorietracker/core/util/simplestack/ServiceScope.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/elian/calorietracker/di/GlobalServices.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/elian/calorietracker/di/ServiceModule.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/elian/calorietracker/features/onboarding/OnboardingAction.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/elian/calorietracker/features/onboarding/OnboardingServiceModule.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/elian/calorietracker/features/onboarding/components/UnitTextField.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/elian/calorietracker/features/onboarding/presentation/OnboardingState.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/elian/calorietracker/features/onboarding/presentation/OnboardingViewModel.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/elian/calorietracker/features/onboarding/presentation/activity_level/ActivityLevelKey.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/elian/calorietracker/features/onboarding/presentation/activity_level/ActivityLevelScreen.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/elian/calorietracker/features/onboarding/presentation/age/AgeScreen.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/elian/calorietracker/features/onboarding/presentation/goal/GoalKey.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/elian/calorietracker/features/onboarding/presentation/goal/GoalScreen.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/elian/calorietracker/features/onboarding/presentation/height/HeightKey.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/elian/calorietracker/features/onboarding/presentation/height/HeightScreen.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/elian/calorietracker/features/onboarding/presentation/nutrient_goal/NutrientGoalKey.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/elian/calorietracker/features/onboarding/presentation/nutrient_goal/NutrientGoalScreen.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/elian/calorietracker/features/onboarding/presentation/weight/WeightKey.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/elian/calorietracker/features/onboarding/presentation/weight/WeightScreen.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/elian/calorietracker/features/tracker/SearchServiceModule.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/elian/calorietracker/features/tracker/TrackerOverviewServiceModule.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/elian/calorietracker/features/tracker/data/remote/OpenFoodApi.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/elian/calorietracker/features/tracker/data/remote/dto/SearchDto.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/elian/calorietracker/features/tracker/data/remote/local/TrackerDao.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/elian/calorietracker/features/tracker/data/remote/local/TrackerDatabase.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/elian/calorietracker/features/tracker/data/remote/local/converter/LocalDateConverter.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/elian/calorietracker/features/tracker/data/remote/local/entity/TrackedFoodEntity.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/elian/calorietracker/features/tracker/data/remote/mapper/TrackableFoodMapper.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/elian/calorietracker/features/tracker/data/remote/mapper/TrackedFoodMapper.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/elian/calorietracker/features/tracker/domain/model/MealType.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/elian/calorietracker/features/tracker/domain/model/Resource.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/elian/calorietracker/features/tracker/domain/model/TrackableFood.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/elian/calorietracker/features/tracker/domain/model/TrackedFood.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/elian/calorietracker/features/tracker/domain/use_case/CalculateMealNutrientsUseCase.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/elian/calorietracker/features/tracker/domain/use_case/DeleteTrackedFoodUseCase.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/elian/calorietracker/features/tracker/domain/use_case/GetFoodsForDateUseCase.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/elian/calorietracker/features/tracker/domain/use_case/SearchFoodUseCase.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/elian/calorietracker/features/tracker/domain/use_case/TrackFoodUseCase.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/elian/calorietracker/features/tracker/presentation/components/NutrientsInfo.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/elian/calorietracker/features/tracker/presentation/components/UnitDisplay.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/elian/calorietracker/features/tracker/presentation/search/SearchAction.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/elian/calorietracker/features/tracker/presentation/search/SearchKey.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/elian/calorietracker/features/tracker/presentation/search/SearchScreen.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/elian/calorietracker/features/tracker/presentation/search/SearchState.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/elian/calorietracker/features/tracker/presentation/search/SearchViewModel.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/elian/calorietracker/features/tracker/presentation/search/TrackableFoodUiState.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/elian/calorietracker/features/tracker/presentation/search/components/SearchTextField.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/elian/calorietracker/features/tracker/presentation/search/components/TrackableFoodItem.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/elian/calorietracker/features/tracker/presentation/tracker_overview/Meal.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/elian/calorietracker/features/tracker/presentation/tracker_overview/TrackerOverviewAction.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/elian/calorietracker/features/tracker/presentation/tracker_overview/TrackerOverviewEvent.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/elian/calorietracker/features/tracker/presentation/tracker_overview/TrackerOverviewKey.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/elian/calorietracker/features/tracker/presentation/tracker_overview/TrackerOverviewScreen.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/elian/calorietracker/features/tracker/presentation/tracker_overview/TrackerOverviewState.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/elian/calorietracker/features/tracker/presentation/tracker_overview/TrackerOverviewViewModel.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/elian/calorietracker/features/tracker/presentation/tracker_overview/components/AddButton.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/elian/calorietracker/features/tracker/presentation/tracker_overview/components/DaySelector.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/elian/calorietracker/features/tracker/presentation/tracker_overview/components/ExpandableMeal.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/elian/calorietracker/features/tracker/presentation/tracker_overview/components/NutrientBar.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/elian/calorietracker/features/tracker/presentation/tracker_overview/components/NutrientCircularIndicator.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/elian/calorietracker/features/tracker/presentation/tracker_overview/components/NutrientHeader.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/elian/calorietracker/features/tracker/presentation/tracker_overview/components/TrackedFoodItem.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/elian/calorietracker/features/tracker/presentation/util/ext/LocalDateExt.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/elian/calorietracker/ui/AppColors.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/res/drawable/ic_breakfast.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/res/drawable/ic_burger.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/res/drawable/ic_dinner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/res/drawable/ic_lunch.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/res/drawable/ic_snacks.xml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ProjectId" id="2aMw91AC3uHBJjNatwexMMEnUWT" />
+  <component name="ProjectViewState">
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "android.gradle.sync.needed": "true",
+    "cidr.known.project.marker": "true"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="d4e8a05d-6155-4cda-b8b6-bf10099ee367" name="Changes" comment="" />
+      <created>1704141606786</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1704141606786</updated>
+    </task>
+    <servers />
+  </component>
+</project>

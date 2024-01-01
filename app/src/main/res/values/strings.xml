@@ -1,0 +1,65 @@
+<resources>
+    <string name="val__AppName">CalorieTracker</string>
+
+    <string name="val__WelcomeMessage">Hello! Let\'s find out more about you :)</string>
+    <string name="val__unit_cm">cm</string>
+    <string name="val__unit_kg">kg</string>
+    <string name="val__unit_g">g</string>
+    <string name="val__unit_kcal">kcal</string>
+
+    <string name="Error__Unknown">Unknown error</string>
+    <string name="Error__CouldntReachServer">Couldn\'t reach server</string>
+    <string name="Error__SomethingWentWrong">Something went wrong</string>
+
+    <string name="Next__verb">Next</string>
+    <string name="WhatsYourGender">What\'s your gender?</string>
+    <string name="Male">Male</string>
+    <string name="Female">Female</string>
+    <string name="WhatsYourAge">What\'s your age?</string>
+    <string name="Years">Years</string>
+    <string name="WhatsYourHeight">What\'s your height?</string>
+    <string name="WhatsYourWeight">What\'s your weight?</string>
+    <string name="WhatsYourActivityLevel">What\'s your activity level?</string>
+    <string name="Low__Activity">Low</string>
+    <string name="Medium__Activity">Medium</string>
+    <string name="High__Activity">High</string>
+    <string name="DoYouWantToLoseKeepOrGainWeight">Do you want to lose, keep or gain weight?</string>
+    <string name="Lose">Lose</string>
+    <string name="Keep">Keep</string>
+    <string name="Gain">Gain</string>
+    <string name="WhatAreYourNutrientGoals">What are your nutrient goals?</string>
+    <string name="Percent_Carbs">% carbs</string>
+    <string name="Percent_Proteins">% proteins</string>
+    <string name="Percent_Fats">% fats</string>
+    <string name="Finish__verb">Finish</string>
+    <string name="PleaseEnterYourAge">Please, enter your age</string>
+    <string name="PleaseEnterYourHeight">Please, enter your height</string>
+    <string name="PleaseEnterYourWeight">Please, enter your weight</string>
+    <string name="PleaseEnterYourNutrientGoals">Please, enter your nutrient goals</string>
+    <string name="Breakfast">Breakfast</string>
+    <string name="Lunch">Lunch</string>
+    <string name="Dinner">Dinner</string>
+    <string name="Snacks">Snacks</string>
+    <string name="YourGoal">Your goal</string>
+    <string name="Carbs">Carbs</string>
+    <string name="Proteins">Proteins</string>
+    <string name="Fats">Fats</string>
+    <string name="PreviousDay">Previous day</string>
+    <string name="NextDay">Next day</string>
+    <string name="Yesterday">Yesterday</string>
+    <string name="Today">Today</string>
+    <string name="Tomorrow">Tomorrow</string>
+    <string name="Add">Add</string>
+    <string name="Delete">Delete</string>
+    <string name="grams__dot__kcal">%dg • %dkcal</string>
+    <string name="Expand">Expand</string>
+    <string name="Collapse">Collapse</string>
+    <string name="AddMeal">Add meal</string>
+    <string name="Search">Search</string>
+    <string name="NoResults">No results</string>
+    <string name="kcal_Kcal__Per__100g">%dkcal / 100g</string>
+    <string name="Track">Track</string>
+    <string name="CouldntTrackTheSelectedFood">Couldn\'t track the selected food</string>
+    <string name="PleaseEnterAValidAmount">Please, enter a valid amount</string>
+    <string name="Add_meal">Add %s</string>
+</resources>
