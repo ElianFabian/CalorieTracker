@@ -38,7 +38,11 @@ class MainActivity : AppCompatActivity() {
 			RootContainer()
 		}
 
-		val fragmentStateChanger = DefaultFragmentStateChanger(supportFragmentManager, androidContentFrame.id)
+		val container = androidContentFrame.apply { 
+			id = R.id.MainFragmentContainer
+		}
+
+		val fragmentStateChanger = DefaultFragmentStateChanger(supportFragmentManager, container.id)
 
 		val showOnboarding = runBlocking {
 			dataStore.data.first().showOnboarding
@@ -55,7 +59,7 @@ class MainActivity : AppCompatActivity() {
 			.setGlobalServices(globalServices)
 			.install(
 				this,
-				androidContentFrame,
+				container,
 				History.single(
 					if (showOnboarding) WelcomeKey else TrackerOverviewKey
 				),

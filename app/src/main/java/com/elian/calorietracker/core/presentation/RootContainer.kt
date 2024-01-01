@@ -9,6 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.viewinterop.AndroidView
+import com.elian.calorietracker.R
 import com.elian.calorietracker.core.presentation.simplestack.BasePreview
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -20,7 +21,9 @@ fun RootContainer() {
 	) { innerPadding ->
 		AndroidView(
 			factory = { context ->
-				FrameLayout(context)
+				FrameLayout(context).apply {
+					id = R.id.MainFragmentContainer
+				}
 			},
 			modifier = Modifier
 				.fillMaxSize()
