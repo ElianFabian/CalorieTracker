@@ -17,6 +17,15 @@ abstract class ComposeKeyedFragment : KeyedFragment() {
 	@Composable
 	abstract fun Content()
 
+
+	override fun onCreate(savedInstanceState: Bundle?) {
+		super.onCreate(savedInstanceState)
+
+		requireActivity().window.decorView.rootView.post {
+			onBackstackIsReady()
+		}
+	}
+
 	final override fun onCreateView(
 		inflater: LayoutInflater,
 		container: ViewGroup?,
@@ -34,5 +43,14 @@ abstract class ComposeKeyedFragment : KeyedFragment() {
 				}
 			}
 		}
+	}
+
+	/**
+	 * After process death it's not possible to get the backstack in onCreate().
+	 *
+	 * Issue's source: https://github.com/Zhuinden/simple-stack/issues/275
+	 */
+	protected open fun onBackstackIsReady() {
+
 	}
 }

@@ -1,6 +1,5 @@
 package com.elian.calorietracker.features.tracker.presentation.tracker_overview
 
-import android.os.Bundle
 import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -24,13 +23,11 @@ data object TrackerOverviewKey : ComposeFragmentKey(
 
 		private val lazyListState = LazyListState()
 
-
-		override fun onCreate(savedInstanceState: Bundle?) {
-			super.onCreate(savedInstanceState)
-
+		override fun onBackstackIsReady() {
 			val viewModel = lookup<TrackerOverviewViewModel>()
 
 			lifecycleScope.launch {
+				// I had problems collecting the SharedFlow inside a Compose function.
 				viewModel.eventFlow
 					.collect { event ->
 						when (event) {
