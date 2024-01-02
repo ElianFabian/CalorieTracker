@@ -1,5 +1,6 @@
 package com.elian.calorietracker.di
 
+import android.app.Application
 import android.content.Context
 import androidx.datastore.core.DataStore
 import androidx.datastore.core.Serializer
@@ -13,11 +14,14 @@ import kotlinx.serialization.json.Json
 import java.io.InputStream
 import java.io.OutputStream
 
-fun Context.provideGlobalServices(): GlobalServices {
+fun Application.provideGlobalServices(
+	block: GlobalServices.Builder.() -> Unit = {},
+): GlobalServices {
 
 	return GlobalServices.builder()
 		.add(dataStore)
 		.add(applicationContext, "appContext")
+		.apply(block)
 		.build()
 }
 
