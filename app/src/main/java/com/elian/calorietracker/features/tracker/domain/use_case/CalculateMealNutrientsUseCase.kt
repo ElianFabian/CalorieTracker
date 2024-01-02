@@ -1,12 +1,12 @@
 package com.elian.calorietracker.features.tracker.domain.use_case
 
+import com.elian.calorietracker.core.domain.app_preferences.AppPreferences
 import com.elian.calorietracker.core.domain.model.ActivityLevel
 import com.elian.calorietracker.core.domain.model.Gender
 import com.elian.calorietracker.core.domain.model.GoalType
 import com.elian.calorietracker.core.util.CaloriesPerGramOfCarbs
 import com.elian.calorietracker.core.util.CaloriesPerGramOfFat
 import com.elian.calorietracker.core.util.CaloriesPerGramOfProtein
-import com.elian.calorietracker.di.AppPreferences
 import com.elian.calorietracker.features.tracker.domain.model.MealType
 import com.elian.calorietracker.features.tracker.domain.model.TrackedFood
 import kotlinx.coroutines.flow.first
@@ -114,7 +114,7 @@ class CalculateMealNutrientsUseCase(
 		val totalProteinInGrams: Int,
 		val totalFatInGrams: Int,
 		val totalCaloriesInKcal: Int,
-		val mealType: MealType
+		val mealType: MealType,
 	)
 
 	data class Result(
@@ -126,6 +126,6 @@ class CalculateMealNutrientsUseCase(
 		val totalProteinInGrams: Int,
 		val totalFatInGrams: Int,
 		val totalCaloriesInKcal: Int,
-		val mealNutrients: Map<MealType, MealNutrients>
+		val mealNutrients: Map<MealType, MealNutrients>,
 	)
 }

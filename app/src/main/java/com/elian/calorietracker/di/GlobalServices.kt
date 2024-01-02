@@ -2,65 +2,46 @@ package com.elian.calorietracker.di
 
 import android.app.Application
 import android.content.Context
-import androidx.datastore.core.DataStore
-import androidx.datastore.core.Serializer
-import androidx.datastore.dataStore
-import com.elian.calorietracker.core.domain.model.AppPreferencesData
+import com.elian.calorietracker.core.data.app_preferences.AppPreferencesImpl
+import com.elian.calorietracker.core.data.app_preferences.dataStore
+import com.elian.calorietracker.core.domain.app_preferences.AppPreferences
+import com.elian.calorietracker.core.util.ResourceManager
 import com.zhuinden.simplestack.GlobalServices
 import com.zhuinden.simplestack.ServiceBinder
 import com.zhuinden.simplestackextensions.servicesktx.add
 import com.zhuinden.simplestackextensions.servicesktx.lookup
-import kotlinx.serialization.json.Json
-import java.io.InputStream
-import java.io.OutputStream
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
 
-fun Application.provideGlobalServices(
-	block: GlobalServices.Builder.() -> Unit = {},
-): GlobalServices {
+/*
+ * Not all the code in here is really used in the project,
+ * they are just here for the sake of learning.
+ */
+
+private const val ApplicationContextTag = "applicationContext"
+private const val ApplicationScopeTag = "applicationScope"
+
+fun Application.provideGlobalServices(): GlobalServices {
+
+	val resourceManager = ResourceManager(this)
+
+	val applicationScope = CoroutineScope(SupervisorJob() + Dispatchers.Main.immediate)
+
+	val preferences: AppPreferences = AppPreferencesImpl(dataStore)
 
 	return GlobalServices.builder()
-		.add(dataStore)
-		.add(applicationContext, "appContext")
-		.apply(block)
+		.add(preferences)
+		.add(applicationContext, ApplicationContextTag)
+		.add(resourceManager)
+		.add(applicationScope, ApplicationScopeTag)
 		.build()
 }
 
 fun ServiceBinder.lookupAppContext(): Context {
-	return lookup("appContext")
+	return lookup(ApplicationContextTag)
 }
 
-
-val Context.dataStore by dataStore(
-	fileName = "app-preferences.json",
-	serializer = AppPreferencesSerializer,
-)
-
-typealias AppPreferences = DataStore<AppPreferencesData>
-
-private object AppPreferencesSerializer : Serializer<AppPreferencesData> {
-
-	override val defaultValue = AppPreferencesData()
-
-	override suspend fun readFrom(input: InputStream): AppPreferencesData {
-		return try {
-			Json.decodeFromString(
-				deserializer = AppPreferencesData.serializer(),
-				string = input.readBytes().decodeToString(),
-			)
-		}
-		catch (e: Exception) {
-			e.printStackTrace()
-			defaultValue
-		}
-	}
-
-	@Suppress("BlockingMethodInNonBlockingContext")
-	override suspend fun writeTo(t: AppPreferencesData, output: OutputStream) {
-		output.write(
-			Json.encodeToString(
-				serializer = AppPreferencesData.serializer(),
-				value = t,
-			).toByteArray(Charsets.UTF_8)
-		)
-	}
+fun ServiceBinder.lookupAppScope(): CoroutineScope {
+	return lookup(ApplicationScopeTag)
 }

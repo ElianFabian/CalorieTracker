@@ -8,16 +8,16 @@ import kotlinx.coroutines.cancel
 import kotlin.coroutines.CoroutineContext
 
 class ServiceScope(
-	private val scope: CoroutineScope = CoroutineScope(SupervisorJob() + Dispatchers.Main.immediate),
-) : ScopedServices.Registered, CoroutineScope {
+	context: CoroutineContext = SupervisorJob() + Dispatchers.Main.immediate,
+) : CoroutineScope, ScopedServices.Registered {
 
-	override val coroutineContext: CoroutineContext = scope.coroutineContext
+	override val coroutineContext: CoroutineContext = context
 
 	override fun onServiceRegistered() {
 
 	}
 
 	override fun onServiceUnregistered() {
-		scope.cancel()
+		this.cancel()
 	}
 }

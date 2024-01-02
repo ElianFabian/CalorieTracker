@@ -4,8 +4,8 @@ import android.os.Bundle
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
+import com.elian.calorietracker.core.data.app_preferences.dataStore
 import com.elian.calorietracker.core.presentation.RootContainer
-import com.elian.calorietracker.di.dataStore
 import com.elian.calorietracker.features.onboarding.presentation.welcome.WelcomeKey
 import com.elian.calorietracker.features.tracker.presentation.tracker_overview.TrackerOverviewKey
 import com.zhuinden.simplestack.BackHandlingModel
@@ -38,7 +38,7 @@ class MainActivity : AppCompatActivity() {
 			RootContainer()
 		}
 
-		val container = androidContentFrame.apply { 
+		val container = androidContentFrame.apply {
 			id = R.id.MainFragmentContainer
 		}
 

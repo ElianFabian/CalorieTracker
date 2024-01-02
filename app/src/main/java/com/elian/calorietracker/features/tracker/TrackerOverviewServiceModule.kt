@@ -2,7 +2,7 @@ package com.elian.calorietracker.features.tracker
 
 import android.content.Context
 import androidx.room.Room
-import com.elian.calorietracker.di.AppPreferences
+import com.elian.calorietracker.core.domain.app_preferences.AppPreferences
 import com.elian.calorietracker.di.ServiceModule
 import com.elian.calorietracker.di.lookupAppContext
 import com.elian.calorietracker.features.tracker.data.remote.local.TrackerDatabase
