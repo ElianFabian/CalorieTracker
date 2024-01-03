@@ -71,13 +71,6 @@ android {
 }
 
 dependencies {
-	implementation("io.coil-kt:coil-compose:2.5.0")
-
-	implementation("org.jetbrains.kotlinx:kotlinx-collections-immutable:0.3.6")
-
-	implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.0")
-
-	implementation("androidx.datastore:datastore:1.0.0")
 
 	val retrofitVersion = "2.9.0"
 	implementation("com.squareup.retrofit2:retrofit:$retrofitVersion")
@@ -99,6 +92,10 @@ dependencies {
 	//implementation("com.github.Zhuinden:simple-stack-compose-integration:0.12.2")
 
 	implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.0")
+	implementation("org.jetbrains.kotlinx:kotlinx-collections-immutable:0.3.6")
+	implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.0")
+
+	implementation("io.coil-kt:coil-compose:2.5.0")
 
 	implementation("androidx.activity:activity-compose:1.8.2")
 	implementation(platform("androidx.compose:compose-bom:2023.03.00"))
@@ -107,6 +104,8 @@ dependencies {
 	implementation("androidx.compose.ui:ui-graphics")
 	implementation("androidx.compose.ui:ui-tooling-preview")
 	implementation("androidx.compose.material3:material3")
+
+	implementation("androidx.datastore:datastore:1.0.0")
 
 	implementation("androidx.appcompat:appcompat:1.6.1")
 	implementation("androidx.core:core-ktx:1.12.0")
@@ -127,6 +126,8 @@ kotlin.sourceSets.all {
 	languageSettings.enableLanguageFeature("DataObjects")
 	languageSettings.enableLanguageFeature("EnumEntries")
 }
+
+
 
 fun getAppLocales(defaultLocale: Locale): List<Locale> {
 	val foundLocales = mutableListOf(defaultLocale)
