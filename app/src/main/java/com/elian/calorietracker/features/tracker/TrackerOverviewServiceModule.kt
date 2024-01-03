@@ -4,7 +4,7 @@ import android.content.Context
 import androidx.room.Room
 import com.elian.calorietracker.core.domain.app_preferences.AppPreferences
 import com.elian.calorietracker.di.ServiceModule
-import com.elian.calorietracker.di.lookupAppContext
+import com.elian.calorietracker.di.lookupApplicationContext
 import com.elian.calorietracker.features.tracker.data.remote.local.TrackerDatabase
 import com.elian.calorietracker.features.tracker.domain.use_case.CalculateMealNutrientsUseCase
 import com.elian.calorietracker.features.tracker.domain.use_case.DeleteTrackedFoodUseCase
@@ -17,8 +17,8 @@ import com.zhuinden.simplestackextensions.servicesktx.lookup
 object TrackerOverviewServiceModule : ServiceModule {
 	override fun bindServices(serviceBinder: ServiceBinder) {
 
-		val context = serviceBinder.lookupAppContext()
-		val dataStore = serviceBinder.lookup<AppPreferences>()
+		val context = serviceBinder.lookupApplicationContext()
+		val preferences = serviceBinder.lookup<AppPreferences>()
 
 		val database = provideTrackerDatabase(context)
 		val trackerDao = database.trackerDao
@@ -30,7 +30,7 @@ object TrackerOverviewServiceModule : ServiceModule {
 			trackerDao = trackerDao,
 		)
 		val calculateMealNutrients = CalculateMealNutrientsUseCase(
-			preferences = dataStore,
+			preferences = preferences,
 		)
 
 		val viewModel = TrackerOverviewViewModel(

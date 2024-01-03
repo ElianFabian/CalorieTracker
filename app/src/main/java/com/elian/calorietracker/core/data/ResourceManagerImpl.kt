@@ -1,4 +1,4 @@
-package com.elian.calorietracker.core.util
+package com.elian.calorietracker.core.data
 
 import android.content.ComponentCallbacks
 import android.content.Context
@@ -13,17 +13,14 @@ import androidx.annotation.IntegerRes
 import androidx.annotation.PluralsRes
 import androidx.annotation.StringRes
 import androidx.core.content.ContextCompat
+import com.elian.calorietracker.core.domain.ResourceManager
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 
-/**
- * This interface is used to provide resources to the application.
- *
- * It can safely be used in classes like ViewModels.
- */
-class ResourceManager(
-	private var context: Context,
-) {
+class ResourceManagerImpl(
+	private val context: Context,
+) : ResourceManager {
+
 	private val _stateFlows = mutableMapOf<TypedResource, MutableStateFlow<in Any?>>()
 
 
@@ -38,35 +35,35 @@ class ResourceManager(
 	}
 
 
-	fun getInt(@IntegerRes id: Int): Int {
+	override fun getInt(@IntegerRes id: Int): Int {
 		return context.resources.getInteger(id)
 	}
 
-	fun getBoolean(@BoolRes id: Int): Boolean {
+	override fun getBoolean(@BoolRes id: Int): Boolean {
 		return context.resources.getBoolean(id)
 	}
 
-	fun getColor(@ColorRes id: Int): Int {
+	override fun getColor(@ColorRes id: Int): Int {
 		return ContextCompat.getColor(context, id)
 	}
 
-	fun getDimension(@DimenRes id: Int): Float {
+	override fun getDimension(@DimenRes id: Int): Float {
 		return context.resources.getDimension(id)
 	}
 
-	fun getDimensionPixelOffset(@DimenRes id: Int): Int {
+	override fun getDimensionPixelOffset(@DimenRes id: Int): Int {
 		return context.resources.getDimensionPixelOffset(id)
 	}
 
-	fun getDimensionPixelSize(@DimenRes id: Int): Int {
+	override fun getDimensionPixelSize(@DimenRes id: Int): Int {
 		return context.resources.getDimensionPixelSize(id)
 	}
 
-	fun getString(@StringRes id: Int): String {
+	override fun getString(@StringRes id: Int): String {
 		return context.resources.getString(id)
 	}
 
-	fun getQuantityString(
+	override fun getQuantityString(
 		@PluralsRes
 		id: Int,
 		quantity: Int,
@@ -74,11 +71,11 @@ class ResourceManager(
 		return context.resources.getQuantityString(id, quantity)
 	}
 
-	fun getText(@StringRes id: Int): CharSequence {
+	override fun getText(@StringRes id: Int): CharSequence {
 		return context.resources.getText(id)
 	}
 
-	fun getQuantityText(
+	override fun getQuantityText(
 		@PluralsRes
 		id: Int,
 		quantity: Int,
@@ -86,54 +83,54 @@ class ResourceManager(
 		return context.resources.getQuantityText(id, quantity)
 	}
 
-	fun getIntArray(@ArrayRes id: Int): IntArray {
+	override fun getIntArray(@ArrayRes id: Int): IntArray {
 		return context.resources.getIntArray(id)
 	}
 
-	fun getStringArray(@ArrayRes id: Int): Array<String> {
+	override fun getStringArray(@ArrayRes id: Int): Array<String> {
 		return context.resources.getStringArray(id)
 	}
 
-	fun getDrawable(@DrawableRes id: Int): Drawable? {
+	override fun getDrawable(@DrawableRes id: Int): Drawable? {
 		return ContextCompat.getDrawable(context, id)
 	}
 
-	fun getIntStateFlow(@IntegerRes id: Int) = getOrCreateStateFlow(
+	override fun getIntStateFlow(@IntegerRes id: Int) = getOrCreateStateFlow(
 		typedResource = TypedResource.Integer(id),
 		getResource = ::getInt,
 	)
 
-	fun getColorStateFlow(@ColorRes id: Int) = getOrCreateStateFlow(
+	override fun getColorStateFlow(@ColorRes id: Int) = getOrCreateStateFlow(
 		typedResource = TypedResource.Color(id),
 		getResource = ::getColor,
 	)
 
-	fun getDimensionStateFlow(@DimenRes id: Int) = getOrCreateStateFlow(
+	override fun getDimensionStateFlow(@DimenRes id: Int) = getOrCreateStateFlow(
 		typedResource = TypedResource.Dimension(id),
 		getResource = ::getDimension,
 	)
 
-	fun getDimensionPixelOffsetStateFlow(@DimenRes id: Int) = getOrCreateStateFlow(
+	override fun getDimensionPixelOffsetStateFlow(@DimenRes id: Int) = getOrCreateStateFlow(
 		typedResource = TypedResource.Dimension(id),
 		getResource = ::getDimensionPixelOffset,
 	)
 
-	fun getDimensionPixelSizeStateFlow(@DimenRes id: Int) = getOrCreateStateFlow(
+	override fun getDimensionPixelSizeStateFlow(@DimenRes id: Int) = getOrCreateStateFlow(
 		typedResource = TypedResource.Dimension(id),
 		getResource = ::getDimensionPixelSize,
 	)
 
-	fun getBooleanStateFlow(@BoolRes id: Int) = getOrCreateStateFlow(
+	override fun getBooleanStateFlow(@BoolRes id: Int) = getOrCreateStateFlow(
 		typedResource = TypedResource.Boolean(id),
 		getResource = ::getBoolean,
 	)
 
-	fun getStringStateFlow(@StringRes id: Int) = getOrCreateStateFlow(
+	override fun getStringStateFlow(@StringRes id: Int) = getOrCreateStateFlow(
 		typedResource = TypedResource.String(id),
 		getResource = ::getString,
 	)
 
-	fun getQuantityStringStateFlow(
+	override fun getQuantityStringStateFlow(
 		@PluralsRes
 		id: Int,
 		quantity: Int,
@@ -142,12 +139,12 @@ class ResourceManager(
 		getResource = { getQuantityString(id, quantity) },
 	)
 
-	fun getTextStateFlow(@StringRes id: Int) = getOrCreateStateFlow(
+	override fun getTextStateFlow(@StringRes id: Int) = getOrCreateStateFlow(
 		typedResource = TypedResource.String(id),
 		getResource = ::getText,
 	)
 
-	fun getQuantityTextStateFlow(
+	override fun getQuantityTextStateFlow(
 		@PluralsRes
 		id: Int,
 		quantity: Int,
@@ -156,17 +153,17 @@ class ResourceManager(
 		getResource = { getQuantityText(id, quantity) },
 	)
 
-	fun getIntArrayStateFlow(@ArrayRes id: Int) = getOrCreateStateFlow(
+	override fun getIntArrayStateFlow(@ArrayRes id: Int) = getOrCreateStateFlow(
 		typedResource = TypedResource.Array(id),
 		getResource = ::getIntArray,
 	)
 
-	fun getStringArrayStateFlow(@ArrayRes id: Int) = getOrCreateStateFlow(
+	override fun getStringArrayStateFlow(@ArrayRes id: Int) = getOrCreateStateFlow(
 		typedResource = TypedResource.Array(id),
 		getResource = ::getStringArray,
 	)
 
-	fun getDrawableStateFlow(@DrawableRes id: Int) = getOrCreateStateFlow(
+	override fun getDrawableStateFlow(@DrawableRes id: Int) = getOrCreateStateFlow(
 		typedResource = TypedResource.Drawable(id),
 		getResource = ::getDrawable,
 	)
@@ -214,6 +211,7 @@ class ResourceManager(
 		return _stateFlows[typedResource] as StateFlow<T>
 	}
 }
+
 
 private sealed interface TypedResource {
 

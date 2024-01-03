@@ -1,11 +1,14 @@
 package com.elian.calorietracker.di
 
+import android.app.Activity
 import android.app.Application
 import android.content.Context
+import com.elian.calorietracker.CalorieTrackerApp
+import com.elian.calorietracker.core.data.ResourceManagerImpl
 import com.elian.calorietracker.core.data.app_preferences.AppPreferencesImpl
 import com.elian.calorietracker.core.data.app_preferences.dataStore
+import com.elian.calorietracker.core.domain.ResourceManager
 import com.elian.calorietracker.core.domain.app_preferences.AppPreferences
-import com.elian.calorietracker.core.util.ResourceManager
 import com.zhuinden.simplestack.GlobalServices
 import com.zhuinden.simplestack.ServiceBinder
 import com.zhuinden.simplestackextensions.servicesktx.add
@@ -24,24 +27,29 @@ private const val ApplicationScopeTag = "applicationScope"
 
 fun Application.provideGlobalServices(): GlobalServices {
 
-	val resourceManager = ResourceManager(this)
+	val resourceManager: ResourceManager = ResourceManagerImpl(this)
 
 	val applicationScope = CoroutineScope(SupervisorJob() + Dispatchers.Main.immediate)
 
 	val preferences: AppPreferences = AppPreferencesImpl(dataStore)
 
 	return GlobalServices.builder()
-		.add(preferences)
 		.add(applicationContext, ApplicationContextTag)
-		.add(resourceManager)
 		.add(applicationScope, ApplicationScopeTag)
+		.add(preferences)
+		.add(resourceManager)
 		.build()
 }
 
-fun ServiceBinder.lookupAppContext(): Context {
+fun ServiceBinder.lookupApplicationContext(): Context {
 	return lookup(ApplicationContextTag)
 }
 
-fun ServiceBinder.lookupAppScope(): CoroutineScope {
+fun ServiceBinder.lookupApplicationScope(): CoroutineScope {
 	return lookup(ApplicationScopeTag)
 }
+
+inline val Activity.globalServices: GlobalServices
+	get() {
+		return (application as CalorieTrackerApp).globalServices
+	}
