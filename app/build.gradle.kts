@@ -75,7 +75,7 @@ dependencies {
 
 	implementation("org.jetbrains.kotlinx:kotlinx-collections-immutable:0.3.6")
 
-	implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.2")
+	implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.0")
 
 	implementation("androidx.datastore:datastore:1.0.0")
 
