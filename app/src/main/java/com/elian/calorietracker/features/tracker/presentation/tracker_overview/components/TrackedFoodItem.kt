@@ -58,17 +58,18 @@ fun TrackedFoodItem(
 		horizontalArrangement = Arrangement.SpaceBetween,
 		verticalAlignment = Alignment.CenterVertically,
 		modifier = modifier
-			.clip(cornerShape)
 			.shadow(
-				elevation = 1.dp,
+				elevation = 5.dp,
 				shape = cornerShape,
 			)
+			.clip(cornerShape)
 			.background(MaterialTheme.colorScheme.surface)
 			.border(
 				width = 1.dp,
 				color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.1F),
 				shape = cornerShape,
 			)
+		
 	) {
 		Image(
 			painter = rememberAsyncImagePainter(
@@ -136,7 +137,7 @@ fun TrackedFoodItem(
 					text = stringResource(
 						id = R.string.grams__dot__kcal,
 						formatArgs = arrayOf(
-							trackedFood.amount,
+							trackedFood.amountInGrams,
 							trackedFood.caloriesInKcal,
 						),
 					),
@@ -184,7 +185,7 @@ fun TrackedFoodItem(
 private val trackedFood = TrackedFood(
 	id = 1,
 	name = "Super extra burger with cheese",
-	amount = 100,
+	amountInGrams = 100,
 	caloriesInKcal = 200,
 	carbsInGrams = 10,
 	proteinsInGrams = 20,

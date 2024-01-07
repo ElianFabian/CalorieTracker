@@ -21,7 +21,7 @@ class TrackFoodUseCase(
 				name = name,
 				imageUrl = imageUrl,
 				mealType = mealType,
-				amount = amount,
+				amountInGrams = amount,
 				date = date,
 				carbsInGrams = ((carbsPer100g / 100f) * amount).toInt(),
 				proteinsInGrams = ((proteinPer100g / 100f) * amount).toInt(),

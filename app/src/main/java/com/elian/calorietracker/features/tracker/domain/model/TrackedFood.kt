@@ -10,7 +10,7 @@ data class TrackedFood(
 	val carbsInGrams: Int,
 	val proteinsInGrams: Int,
 	val fatsInGrams: Int,
-	val amount: Int,
+	val amountInGrams: Int,
 	val caloriesInKcal: Int,
 	val id: Long? = null,
 )

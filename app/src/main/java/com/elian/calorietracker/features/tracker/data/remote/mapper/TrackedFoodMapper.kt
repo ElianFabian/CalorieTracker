@@ -13,7 +13,7 @@ fun TrackedFoodEntity.toTrackedFood(): TrackedFood? {
 		carbsInGrams = carbs,
 		proteinsInGrams = protein,
 		fatsInGrams = fat,
-		amount = amount,
+		amountInGrams = amount,
 		caloriesInKcal = calories,
 		id = id,
 	)
@@ -28,7 +28,7 @@ fun TrackedFood.toTrackedFoodEntity(): TrackedFoodEntity {
 		carbs = carbsInGrams,
 		protein = proteinsInGrams,
 		fat = fatsInGrams,
-		amount = amount,
+		amount = amountInGrams,
 		calories = caloriesInKcal,
 		id = id,
 	)
