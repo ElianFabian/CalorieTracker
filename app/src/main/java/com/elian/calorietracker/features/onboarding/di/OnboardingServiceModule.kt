@@ -1,4 +1,4 @@
-package com.elian.calorietracker.features.onboarding
+package com.elian.calorietracker.features.onboarding.di
 
 import com.elian.calorietracker.di.ServiceModule
 import com.elian.calorietracker.features.onboarding.presentation.OnboardingViewModel

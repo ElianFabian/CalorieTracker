@@ -8,7 +8,7 @@ import androidx.lifecycle.lifecycleScope
 import com.elian.calorietracker.core.presentation.simplestack.ComposeFragmentKey
 import com.elian.calorietracker.core.presentation.simplestack.ComposeKeyedFragment
 import com.elian.calorietracker.core.util.ext.simplestack.rememberService
-import com.elian.calorietracker.features.tracker.TrackerOverviewServiceModule
+import com.elian.calorietracker.features.tracker.di.TrackerOverviewServiceModule
 import com.zhuinden.simplestackextensions.fragmentsktx.lookup
 import kotlinx.coroutines.launch
 import kotlinx.parcelize.Parcelize

@@ -10,7 +10,7 @@ import com.elian.calorietracker.core.presentation.simplestack.ComposeFragmentKey
 import com.elian.calorietracker.core.presentation.simplestack.ComposeKeyedFragment
 import com.elian.calorietracker.core.util.ext.simplestack.rememberService
 import com.elian.calorietracker.core.util.toString
-import com.elian.calorietracker.features.tracker.SearchServiceModule
+import com.elian.calorietracker.features.tracker.di.SearchServiceModule
 import com.elian.calorietracker.features.tracker.domain.model.MealType
 import kotlinx.parcelize.Parcelize
 import java.time.LocalDate

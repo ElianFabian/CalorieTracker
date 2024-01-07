@@ -1,4 +1,4 @@
-package com.elian.calorietracker.features.tracker
+package com.elian.calorietracker.features.tracker.di
 
 import com.elian.calorietracker.di.ServiceModule
 import com.elian.calorietracker.features.tracker.data.remote.OpenFoodApi

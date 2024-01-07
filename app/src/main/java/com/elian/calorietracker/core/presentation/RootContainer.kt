@@ -1,6 +1,7 @@
 package com.elian.calorietracker.core.presentation
 
 import android.widget.FrameLayout
+import androidx.annotation.IdRes
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -9,12 +10,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.viewinterop.AndroidView
-import com.elian.calorietracker.R
 import com.elian.calorietracker.core.presentation.simplestack.BasePreview
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun RootContainer() {
+fun RootContainer(
+	@IdRes
+	containerId: Int,
+) {
 	Scaffold(
 		modifier = Modifier
 			.fillMaxSize()
@@ -22,7 +25,7 @@ fun RootContainer() {
 		AndroidView(
 			factory = { context ->
 				FrameLayout(context).apply {
-					id = R.id.MainFragmentContainer
+					id = containerId
 				}
 			},
 			modifier = Modifier
@@ -36,5 +39,7 @@ fun RootContainer() {
 @Preview(showBackground = true)
 @Composable
 private fun Preview() = BasePreview {
-	RootContainer()
+	RootContainer(
+		containerId = 0,
+	)
 }

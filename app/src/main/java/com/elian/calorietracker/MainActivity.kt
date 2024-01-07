@@ -35,15 +35,19 @@ class MainActivity : AppCompatActivity() {
 
 		onBackPressedDispatcher.addCallback(backPressedCallback)
 
+		val containerId = R.id.MainFragmentContainer
+
 		setContent {
-			RootContainer()
+			RootContainer(
+				containerId = containerId,
+			)
 		}
 
 		val container = androidContentFrame.apply {
-			id = R.id.MainFragmentContainer
+			id = containerId
 		}
 
-		val fragmentStateChanger = DefaultFragmentStateChanger(supportFragmentManager, container.id)
+		val fragmentStateChanger = DefaultFragmentStateChanger(supportFragmentManager, containerId)
 
 		val showOnboarding = runBlocking {
 			dataStore.data.first().showOnboarding

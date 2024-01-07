@@ -100,6 +100,11 @@ class ResourceManagerImpl(
 		getResource = ::getInt,
 	)
 
+	override fun getBooleanStateFlow(@BoolRes id: Int) = getOrCreateStateFlow(
+		typedResource = TypedResource.Boolean(id),
+		getResource = ::getBoolean,
+	)
+
 	override fun getColorStateFlow(@ColorRes id: Int) = getOrCreateStateFlow(
 		typedResource = TypedResource.Color(id),
 		getResource = ::getColor,
@@ -118,11 +123,6 @@ class ResourceManagerImpl(
 	override fun getDimensionPixelSizeStateFlow(@DimenRes id: Int) = getOrCreateStateFlow(
 		typedResource = TypedResource.Dimension(id),
 		getResource = ::getDimensionPixelSize,
-	)
-
-	override fun getBooleanStateFlow(@BoolRes id: Int) = getOrCreateStateFlow(
-		typedResource = TypedResource.Boolean(id),
-		getResource = ::getBoolean,
 	)
 
 	override fun getStringStateFlow(@StringRes id: Int) = getOrCreateStateFlow(

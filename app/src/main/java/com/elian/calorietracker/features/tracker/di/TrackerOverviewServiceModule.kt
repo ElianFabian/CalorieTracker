@@ -1,4 +1,4 @@
-package com.elian.calorietracker.features.tracker
+package com.elian.calorietracker.features.tracker.di
 
 import android.content.Context
 import androidx.room.Room

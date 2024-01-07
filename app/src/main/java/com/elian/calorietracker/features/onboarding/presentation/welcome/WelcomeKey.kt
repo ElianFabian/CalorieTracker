@@ -5,7 +5,7 @@ import com.elian.calorietracker.core.presentation.simplestack.ComposeFragmentKey
 import com.elian.calorietracker.core.presentation.simplestack.ComposeKeyedFragment
 import com.elian.calorietracker.core.util.ext.simplestack.rememberService
 import com.elian.calorietracker.features.onboarding.OnboardingAction
-import com.elian.calorietracker.features.onboarding.OnboardingServiceModule
+import com.elian.calorietracker.features.onboarding.di.OnboardingServiceModule
 import com.elian.calorietracker.features.onboarding.presentation.OnboardingViewModel
 import kotlinx.parcelize.Parcelize
 
