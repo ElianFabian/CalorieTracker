@@ -49,10 +49,12 @@ object TrackerOverviewServiceModule : ServiceModule {
 
 
 private fun provideTrackerDatabase(context: Context): TrackerDatabase {
-	return Room.databaseBuilder(
-		context,
-		TrackerDatabase::class.java,
-		"tracker_db",
-	).fallbackToDestructiveMigration()
+	return Room
+		.databaseBuilder(
+			context,
+			TrackerDatabase::class.java,
+			"tracker_db",
+		)
+		.fallbackToDestructiveMigration()
 		.build()
 }

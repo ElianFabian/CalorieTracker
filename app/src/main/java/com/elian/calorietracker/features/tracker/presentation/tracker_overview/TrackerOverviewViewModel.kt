@@ -54,16 +54,12 @@ class TrackerOverviewViewModel(
 		when (action) {
 			is TrackerOverviewAction.SelectPreviousDay -> {
 				_state.update {
-					it.copy(
-						date = it.date.minusDays(1)
-					)
+					it.copy(date = it.date.minusDays(1))
 				}
 			}
 			is TrackerOverviewAction.SelectNextDay     -> {
 				_state.update {
-					it.copy(
-						date = it.date.plusDays(1)
-					)
+					it.copy(date = it.date.plusDays(1))
 				}
 			}
 			is TrackerOverviewAction.AddMeal           -> {
@@ -88,13 +84,14 @@ class TrackerOverviewViewModel(
 		_foodsForDateJob = serviceScope.launch {
 			getFoodsForDate(date)
 				.collect { foods ->
-					val result = calculateMealNutrients(foods)
 
 					val previousFoodsForDate = _state.value.trackedFoods
 					val wasFoodAdded = foods.size > previousFoodsForDate.size
 					if (wasFoodAdded) {
 						//onFoodWasAdded()
 					}
+
+					val result = calculateMealNutrients(foods)
 
 					_state.update { state ->
 						state.copy(

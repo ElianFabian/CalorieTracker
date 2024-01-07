@@ -87,18 +87,17 @@ class CalculateMealNutrientsUseCase(
 		heightInCm: Int,
 		age: Int,
 	): Int {
+
 		val activityFactor = when (activityLevel) {
 			ActivityLevel.Low    -> 1.2F
 			ActivityLevel.Medium -> 1.3F
 			ActivityLevel.High   -> 1.4F
 		}
-
 		val caloriesExtra = when (goalType) {
 			GoalType.LoseWeight -> -500
 			GoalType.KeepWeight -> 0
 			GoalType.GainWeight -> 500
 		}
-
 		val bmr = calculateBmr(
 			gender = gender,
 			weightInKg = weightInKg,

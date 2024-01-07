@@ -25,6 +25,7 @@ class SearchServiceModule(
 	private val mealType: MealType,
 ) : ServiceModule {
 	override fun bindServices(serviceBinder: ServiceBinder) {
+
 		val okHttpClient = provideOkHttpClient()
 		val openApiFood = provideOpenFoodApi(okHttpClient)
 		val database = serviceBinder.lookup<TrackerDatabase>()

@@ -8,6 +8,7 @@ import com.zhuinden.simplestackextensions.servicesktx.lookup
 
 object OnboardingServiceModule : ServiceModule {
 	override fun bindServices(serviceBinder: ServiceBinder) {
+
 		val onboardingViewModel = OnboardingViewModel(
 			backstack = serviceBinder.backstack,
 			preferences = serviceBinder.lookup(),

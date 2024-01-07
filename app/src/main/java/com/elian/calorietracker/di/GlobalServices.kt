@@ -27,10 +27,9 @@ private const val ApplicationScopeTag = "applicationScope"
 
 fun Application.provideGlobalServices(): GlobalServices {
 
-	val resourceManager: ResourceManager = ResourceManagerImpl(this)
-
 	val applicationScope = CoroutineScope(SupervisorJob() + Dispatchers.Main.immediate)
 
+	val resourceManager: ResourceManager = ResourceManagerImpl(this)
 	val preferences: AppPreferences = AppPreferencesImpl(dataStore)
 
 	return GlobalServices.builder()
