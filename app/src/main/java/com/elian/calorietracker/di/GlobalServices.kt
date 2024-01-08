@@ -27,7 +27,7 @@ private const val ApplicationScopeTag = "applicationScope"
 
 fun Application.provideGlobalServices(): GlobalServices {
 
-	val applicationScope = CoroutineScope(SupervisorJob() + Dispatchers.Main.immediate)
+	val applicationScope = provideApplicationScope()
 
 	val resourceManager: ResourceManager = ResourceManagerImpl(this)
 	val preferences: AppPreferences = AppPreferencesImpl(dataStore)
@@ -49,6 +49,9 @@ fun ServiceBinder.lookupApplicationScope(): CoroutineScope {
 }
 
 inline val Activity.globalServices: GlobalServices
-	get() {
-		return (application as CalorieTrackerApp).globalServices
-	}
+	get() = (application as CalorieTrackerApp).globalServices
+
+
+private fun provideApplicationScope(): CoroutineScope {
+	return CoroutineScope(SupervisorJob() + Dispatchers.Main.immediate)
+}
