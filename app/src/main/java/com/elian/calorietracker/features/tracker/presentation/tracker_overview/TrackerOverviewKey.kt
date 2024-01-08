@@ -51,7 +51,7 @@ data object TrackerOverviewKey : ComposeFragmentKey(
 				date = state.date,
 				nutrients = state.nutrients,
 				lazyListState = lazyListState,
-				onPreviewDayClick = {
+				onPreviousDayClick = {
 					viewModel.onAction(TrackerOverviewAction.SelectPreviousDay)
 				},
 				onNextDayClick = {

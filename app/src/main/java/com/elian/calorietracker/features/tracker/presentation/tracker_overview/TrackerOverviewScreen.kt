@@ -29,7 +29,7 @@ import java.time.LocalDate
 
 @Composable
 fun TrackerOverviewScreen(
-	onPreviewDayClick: () -> Unit,
+	onPreviousDayClick: () -> Unit,
 	onNextDayClick: () -> Unit,
 	onAddMealClick: (mealType: MealType) -> Unit,
 	onDeleteTrackedFoodClick: (trackedFood: TrackedFood) -> Unit,
@@ -53,7 +53,7 @@ fun TrackerOverviewScreen(
 			DaySelector(
 				date = date,
 				onPreviousDayClick = {
-					onPreviewDayClick()
+					onPreviousDayClick()
 				},
 				onNextDayClick = {
 					onNextDayClick()
@@ -117,7 +117,7 @@ fun TrackerOverviewScreen(
 private fun Preview() = BasePreview {
 	TrackerOverviewScreen(
 		onAddMealClick = {},
-		onPreviewDayClick = {},
+		onPreviousDayClick = {},
 		onNextDayClick = {},
 		onDeleteTrackedFoodClick = {},
 		date = LocalDate.now(),
