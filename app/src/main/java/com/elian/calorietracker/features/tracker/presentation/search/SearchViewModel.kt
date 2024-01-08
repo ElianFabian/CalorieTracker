@@ -4,7 +4,6 @@ import com.elian.calorietracker.R
 import com.elian.calorietracker.core.util.UiText
 import com.elian.calorietracker.core.util.ext.filterDigits
 import com.elian.calorietracker.core.util.simplestack.ServiceScope
-import com.elian.calorietracker.features.tracker.data.remote.mapper.toTrackableFood
 import com.elian.calorietracker.features.tracker.domain.model.MealType
 import com.elian.calorietracker.features.tracker.domain.model.Resource
 import com.elian.calorietracker.features.tracker.domain.use_case.SearchFoodUseCase
@@ -64,11 +63,8 @@ class SearchViewModel(
 						is Resource.Success -> {
 							_state.update {
 								it.copy(
-									trackableFoods = result.data.orEmpty().mapNotNull { food ->
-										TrackableFoodUiState(
-											food = food.toTrackableFood() ?: return@mapNotNull null,
-											amount = "",
-										)
+									trackableFoods = result.data.orEmpty().map { food ->
+										TrackableFoodUiState(food = food)
 									}
 								)
 							}
@@ -99,7 +95,6 @@ class SearchViewModel(
 					val trackableFoodUiState = state.trackableFoods.firstOrNull {
 						it.food == action.trackableFood
 					}
-
 					if (trackableFoodUiState == null) {
 						showMessage(UiText(R.string.CouldntTrackTheSelectedFood))
 						return@launch
