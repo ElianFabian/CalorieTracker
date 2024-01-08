@@ -27,7 +27,7 @@ data object AgeKey : ComposeFragmentKey() {
 
 			onboardingViewModel.messageFlow
 				.collectAsEffectWithLifecycle { message ->
-					Toast.makeText(context, message.toString(context), Toast.LENGTH_SHORT).show()
+					Toast.makeText(context, message.toString(requireContext()), Toast.LENGTH_SHORT).show()
 				}
 
 			val state by onboardingViewModel.state.collectAsStateWithLifecycle()

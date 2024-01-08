@@ -16,14 +16,14 @@ private value class DynamicString(val value: String) : UiText
 private data class StringResource(
 	@StringRes
 	val resId: Int,
-	val args: List<UiTextArg?> = emptyList(),
+	val args: List<UiTextArg?>,
 ) : UiText
 
 private data class PluralsResource(
 	@PluralsRes
 	val resId: Int,
 	val quantity: Int,
-	val args: List<UiTextArg?> = emptyList(),
+	val args: List<UiTextArg?>,
 ) : UiText
 
 
@@ -91,24 +91,8 @@ fun UiText.toCharSequence(context: Context): CharSequence {
 	}
 }
 
-@JvmName("toCharSequenceNullable")
-inline fun UiText.toCharSequence(context: Context?): CharSequence? {
-	if (context == null) {
-		return null
-	}
-	return toCharSequence(context)
-}
-
 inline fun UiText.toString(context: Context): String {
 	return toCharSequence(context).toString()
-}
-
-@JvmName("toStringNullable")
-inline fun UiText.toString(context: Context?): String? {
-	if (context == null) {
-		return null
-	}
-	return toString(context)
 }
 
 inline fun Collection<UiText>.joinToCharSequence(
@@ -134,29 +118,6 @@ inline fun Collection<UiText>.joinToCharSequence(
 	}
 }
 
-@JvmName("joinToCharSequenceNullable")
-inline fun Collection<UiText>.joinToCharSequence(
-	context: Context?,
-	separator: CharSequence = "\n",
-	prefix: CharSequence = "",
-	postfix: CharSequence = "",
-	limit: Int = -1,
-	truncated: CharSequence = "...",
-): String? {
-	if (context == null) {
-		return null
-	}
-
-	return joinToString(
-		context = context,
-		separator = separator,
-		prefix = prefix,
-		postfix = postfix,
-		limit = limit,
-		truncated = truncated,
-	)
-}
-
 inline fun Collection<UiText>.joinToString(
 	context: Context,
 	separator: CharSequence = "\n",
@@ -180,29 +141,6 @@ inline fun Collection<UiText>.joinToString(
 	}
 }
 
-@JvmName("joinToStringNullable")
-inline fun Collection<UiText>.joinToString(
-	context: Context?,
-	separator: CharSequence = "\n",
-	prefix: CharSequence = "",
-	postfix: CharSequence = "",
-	limit: Int = -1,
-	truncated: CharSequence = "...",
-): String? {
-	if (context == null) {
-		return null
-	}
-
-	return joinToString(
-		context = context,
-		separator = separator,
-		prefix = prefix,
-		postfix = postfix,
-		limit = limit,
-		truncated = truncated,
-	)
-}
-
 
 sealed interface UiTextArg
 
@@ -218,14 +156,14 @@ private value class IntegerResourceArg(@IntegerRes val resId: Int) : UiTextArg
 private data class StringResourceArg(
 	@StringRes
 	val resId: Int,
-	val args: List<UiTextArg?> = emptyList(),
+	val args: List<UiTextArg?>,
 ) : UiTextArg
 
 private data class PluralsResourceArg(
 	@PluralsRes
 	val resId: Int,
 	val quantity: Int,
-	val args: List<UiTextArg?> = emptyList(),
+	val args: List<UiTextArg?>,
 ) : UiTextArg
 
 fun UiTextArg.getValue(context: Context): Any {

@@ -37,7 +37,7 @@ data class SearchKey(
 			val context = LocalContext.current
 
 			viewModel.messageFlow.collectAsEffectWithLifecycle { message ->
-				Toast.makeText(context, message.toString(context), Toast.LENGTH_SHORT).show()
+				Toast.makeText(context, message.toString(requireContext()), Toast.LENGTH_SHORT).show()
 			}
 
 			val state by viewModel.state.collectAsStateWithLifecycle()
