@@ -17,7 +17,7 @@ enum class MealType(val key: String) {
 }
 
 @get:StringRes
-inline val MealType.nameResId: Int
+val MealType.nameResId: Int
 	get() = when (this) {
 		MealType.Breakfast -> R.string.Breakfast
 		MealType.Lunch     -> R.string.Lunch
