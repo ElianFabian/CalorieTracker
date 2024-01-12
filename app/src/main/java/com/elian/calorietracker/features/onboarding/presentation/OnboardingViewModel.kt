@@ -6,7 +6,6 @@ import com.elian.calorietracker.core.domain.model.UserData
 import com.elian.calorietracker.core.util.UiText
 import com.elian.calorietracker.core.util.ext.filterDigits
 import com.elian.calorietracker.core.util.simplestack.ServiceScope
-import com.elian.calorietracker.features.onboarding.OnboardingAction
 import com.elian.calorietracker.features.onboarding.presentation.activity_level.ActivityLevelKey
 import com.elian.calorietracker.features.onboarding.presentation.age.AgeKey
 import com.elian.calorietracker.features.onboarding.presentation.gender.GenderKey

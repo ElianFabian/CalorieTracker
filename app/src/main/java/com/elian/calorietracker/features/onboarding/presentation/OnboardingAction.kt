@@ -1,4 +1,4 @@
-package com.elian.calorietracker.features.onboarding
+package com.elian.calorietracker.features.onboarding.presentation
 
 import com.elian.calorietracker.core.domain.model.ActivityLevel
 import com.elian.calorietracker.core.domain.model.Gender

@@ -6,7 +6,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.elian.calorietracker.core.presentation.simplestack.ComposeFragmentKey
 import com.elian.calorietracker.core.presentation.simplestack.ComposeKeyedFragment
 import com.elian.calorietracker.core.util.ext.simplestack.rememberService
-import com.elian.calorietracker.features.onboarding.OnboardingAction
+import com.elian.calorietracker.features.onboarding.presentation.OnboardingAction
 import com.elian.calorietracker.features.onboarding.presentation.OnboardingViewModel
 import kotlinx.parcelize.Parcelize
 
