@@ -19,9 +19,13 @@ private object AppPreferencesSerializer : Serializer<AppPreferencesData> {
 
 	override val defaultValue = AppPreferencesData()
 
+	private val json = Json {
+		encodeDefaults = true
+	}
+
 	override suspend fun readFrom(input: InputStream): AppPreferencesData {
 		return try {
-			Json.decodeFromString(
+			json.decodeFromString(
 				deserializer = AppPreferencesData.serializer(),
 				string = input.readBytes().decodeToString(),
 			)
@@ -35,7 +39,7 @@ private object AppPreferencesSerializer : Serializer<AppPreferencesData> {
 	@Suppress("BlockingMethodInNonBlockingContext")
 	override suspend fun writeTo(t: AppPreferencesData, output: OutputStream) {
 		output.write(
-			Json.encodeToString(
+			json.encodeToString(
 				serializer = AppPreferencesData.serializer(),
 				value = t,
 			).toByteArray(Charsets.UTF_8)
