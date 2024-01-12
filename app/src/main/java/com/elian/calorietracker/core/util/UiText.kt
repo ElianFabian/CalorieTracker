@@ -166,7 +166,7 @@ private data class PluralsResourceArg(
 	val args: List<UiTextArg?>,
 ) : UiTextArg
 
-fun UiTextArg.getValue(context: Context): Any {
+private fun UiTextArg.getValue(context: Context): Any {
 	val resources = context.resources
 
 	return when (this) {
@@ -186,14 +186,6 @@ fun UiTextArg.getValue(context: Context): Any {
 			)
 		}
 	}
-}
-
-@JvmName("getValueNullable")
-inline fun UiTextArg.getValue(context: Context?): Any? {
-	if (context == null) {
-		return null
-	}
-	return getValue(context)
 }
 
 fun stringResArg(
