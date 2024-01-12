@@ -120,11 +120,9 @@ private fun Preview() = BasePreview {
 		onPreviousDayClick = {},
 		onNextDayClick = {},
 		onDeleteTrackedFoodClick = {},
-		trackerOverviewState = TrackerOverviewState(
-			date = LocalDate.now(),
-			meals = DefaultMeals,
-			trackedFoods = emptyList(),
-			nutrients = NutrientsState(),
-		)
+		date = LocalDate.now(),
+		meals = DefaultMeals,
+		trackedFoods = emptyList(),
+		nutrients = NutrientsState(),
 	)
 }
