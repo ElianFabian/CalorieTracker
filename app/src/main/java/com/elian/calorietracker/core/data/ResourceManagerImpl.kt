@@ -21,7 +21,7 @@ class ResourceManagerImpl(
 	private val context: Context,
 ) : ResourceManager {
 
-	private val _stateFlows = mutableMapOf<TypedResource, MutableStateFlow<in Any?>>()
+	private val _stateFlowByResource = mutableMapOf<TypedResource, MutableStateFlow<in Any?>>()
 
 
 	init {
@@ -116,12 +116,12 @@ class ResourceManagerImpl(
 	)
 
 	override fun getDimensionPixelOffsetStateFlow(@DimenRes id: Int) = getOrCreateStateFlow(
-		typedResource = TypedResource.Dimension(id),
+		typedResource = TypedResource.DimensionPixelOffset(id),
 		getResource = ::getDimensionPixelOffset,
 	)
 
 	override fun getDimensionPixelSizeStateFlow(@DimenRes id: Int) = getOrCreateStateFlow(
-		typedResource = TypedResource.Dimension(id),
+		typedResource = TypedResource.DimensionPixelSize(id),
 		getResource = ::getDimensionPixelSize,
 	)
 
@@ -135,12 +135,12 @@ class ResourceManagerImpl(
 		id: Int,
 		quantity: Int,
 	) = getOrCreateStateFlow(
-		typedResource = TypedResource.Plurals(id, quantity),
+		typedResource = TypedResource.QuantityString(id, quantity),
 		getResource = { getQuantityString(id, quantity) },
 	)
 
 	override fun getTextStateFlow(@StringRes id: Int) = getOrCreateStateFlow(
-		typedResource = TypedResource.String(id),
+		typedResource = TypedResource.Text(id),
 		getResource = ::getText,
 	)
 
@@ -149,17 +149,17 @@ class ResourceManagerImpl(
 		id: Int,
 		quantity: Int,
 	) = getOrCreateStateFlow(
-		typedResource = TypedResource.Plurals(id, quantity),
+		typedResource = TypedResource.QuantityText(id, quantity),
 		getResource = { getQuantityText(id, quantity) },
 	)
 
 	override fun getIntArrayStateFlow(@ArrayRes id: Int) = getOrCreateStateFlow(
-		typedResource = TypedResource.Array(id),
+		typedResource = TypedResource.IntArray(id),
 		getResource = ::getIntArray,
 	)
 
 	override fun getStringArrayStateFlow(@ArrayRes id: Int) = getOrCreateStateFlow(
-		typedResource = TypedResource.Array(id),
+		typedResource = TypedResource.StringArray(id),
 		getResource = ::getStringArray,
 	)
 
@@ -170,16 +170,23 @@ class ResourceManagerImpl(
 
 
 	private fun update() {
-		_stateFlows.forEach { (typedResource, stateFlow) ->
+		_stateFlowByResource.forEach { (typedResource, stateFlow) ->
+			val id = typedResource.id
+
 			stateFlow.value = when (typedResource) {
-				is TypedResource.Integer   -> getInt(typedResource.id)
-				is TypedResource.Color     -> getColor(typedResource.id)
-				is TypedResource.Dimension -> getDimension(typedResource.id)
-				is TypedResource.Boolean   -> getBoolean(typedResource.id)
-				is TypedResource.String    -> getString(typedResource.id)
-				is TypedResource.Plurals   -> getQuantityString(typedResource.id, typedResource.quantity)
-				is TypedResource.Array     -> getStringArray(typedResource.id)
-				is TypedResource.Drawable  -> getDrawable(typedResource.id)
+				is TypedResource.Integer              -> getInt(id)
+				is TypedResource.Boolean              -> getBoolean(id)
+				is TypedResource.Color                -> getColor(id)
+				is TypedResource.Dimension            -> getDimension(id)
+				is TypedResource.DimensionPixelOffset -> getDimensionPixelOffset(id)
+				is TypedResource.DimensionPixelSize   -> getDimensionPixelSize(id)
+				is TypedResource.String               -> getString(id)
+				is TypedResource.QuantityString       -> getQuantityString(id, typedResource.quantity)
+				is TypedResource.Text                 -> getText(id)
+				is TypedResource.QuantityText         -> getQuantityText(id, typedResource.quantity)
+				is TypedResource.IntArray             -> getIntArray(id)
+				is TypedResource.StringArray          -> getStringArray(id)
+				is TypedResource.Drawable             -> getDrawable(id)
 			}
 		}
 	}
@@ -188,7 +195,7 @@ class ResourceManagerImpl(
 		typedResource: TypedResource,
 		getResource: (id: Int) -> T,
 	): StateFlow<T> {
-		if (typedResource in _stateFlows) {
+		if (typedResource in _stateFlowByResource) {
 			return getFlow(typedResource)
 		}
 
@@ -203,12 +210,12 @@ class ResourceManagerImpl(
 
 	@Suppress("NOTHING_TO_INLINE", "UNCHECKED_CAST")
 	private inline fun addStateFlow(typedResource: TypedResource, stateFlow: MutableStateFlow<*>) {
-		_stateFlows[typedResource] = stateFlow as MutableStateFlow<in Any?>
+		_stateFlowByResource[typedResource] = stateFlow as MutableStateFlow<in Any?>
 	}
 
 	@Suppress("NOTHING_TO_INLINE", "UNCHECKED_CAST")
 	private inline fun <T> getFlow(typedResource: TypedResource): StateFlow<T> {
-		return _stateFlows[typedResource] as StateFlow<T>
+		return _stateFlowByResource[typedResource] as StateFlow<T>
 	}
 }
 
@@ -230,17 +237,23 @@ private sealed interface TypedResource {
 	value class Dimension(@DimenRes override val id: Int) : TypedResource
 
 	@JvmInline
+	value class DimensionPixelOffset(@DimenRes override val id: Int) : TypedResource
+
+	@JvmInline
+	value class DimensionPixelSize(@DimenRes override val id: Int) : TypedResource
+
+	@JvmInline
 	value class String(@StringRes override val id: Int) : TypedResource
 
 	@JvmInline
-	value class Plurals private constructor(
+	value class QuantityString private constructor(
 		private val packedValue: Long
 	) : TypedResource {
 
 		@get:PluralsRes
 		override val id: Int get() = packedValue.toInt()
 
-		inline val quantity: Int get() = (packedValue shr 32).toInt()
+		val quantity: Int get() = (packedValue shr 32).toInt()
 
 		constructor(
 			@PluralsRes
@@ -252,7 +265,32 @@ private sealed interface TypedResource {
 	}
 
 	@JvmInline
-	value class Array(@ArrayRes override val id: Int) : TypedResource
+	value class Text(@StringRes override val id: Int) : TypedResource
+
+	@JvmInline
+	value class QuantityText private constructor(
+		private val packedValue: Long
+	) : TypedResource {
+
+		@get:PluralsRes
+		override val id: Int get() = packedValue.toInt()
+
+		val quantity: Int get() = (packedValue shr 32).toInt()
+
+		constructor(
+			@PluralsRes
+			id: Int,
+			quantity: Int,
+		) : this(
+			packedValue = id.toLong() shl 32 or quantity.toLong(),
+		)
+	}
+
+	@JvmInline
+	value class IntArray(@ArrayRes override val id: Int) : TypedResource
+
+	@JvmInline
+	value class StringArray(@ArrayRes override val id: Int) : TypedResource
 
 	@JvmInline
 	value class Drawable(@DrawableRes override val id: Int) : TypedResource
