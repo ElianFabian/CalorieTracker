@@ -4,6 +4,7 @@ import android.content.ComponentCallbacks
 import android.content.Context
 import android.content.res.Configuration
 import android.graphics.drawable.Drawable
+import android.os.Build
 import androidx.annotation.ArrayRes
 import androidx.annotation.BoolRes
 import androidx.annotation.ColorRes
@@ -59,6 +60,13 @@ class ResourceManagerImpl(
 		return context.resources.getDimensionPixelSize(id)
 	}
 
+	override fun getFloatOrNull(@DimenRes id: Int): Float? {
+		if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
+			return null
+		}
+		return context.resources.getFloat(id)
+	}
+
 	override fun getString(@StringRes id: Int): String {
 		return context.resources.getString(id)
 	}
@@ -89,6 +97,10 @@ class ResourceManagerImpl(
 
 	override fun getStringArray(@ArrayRes id: Int): Array<String> {
 		return context.resources.getStringArray(id)
+	}
+
+	override fun getTextArray(@ArrayRes id: Int): Array<CharSequence> {
+		return context.resources.getTextArray(id)
 	}
 
 	override fun getDrawable(@DrawableRes id: Int): Drawable? {
@@ -123,6 +135,11 @@ class ResourceManagerImpl(
 	override fun getDimensionPixelSizeStateFlow(@DimenRes id: Int) = getOrCreateStateFlow(
 		typedResource = TypedResource.DimensionPixelSize(id),
 		getResource = ::getDimensionPixelSize,
+	)
+
+	override fun getFloatStateFlow(@DimenRes id: Int) = getOrCreateStateFlow(
+		typedResource = TypedResource.Float(id),
+		getResource = ::getFloatOrNull,
 	)
 
 	override fun getStringStateFlow(@StringRes id: Int) = getOrCreateStateFlow(
@@ -163,6 +180,11 @@ class ResourceManagerImpl(
 		getResource = ::getStringArray,
 	)
 
+	override fun getTextArrayStateFlow(@ArrayRes id: Int) = getOrCreateStateFlow(
+		typedResource = TypedResource.TextArray(id),
+		getResource = ::getTextArray,
+	)
+
 	override fun getDrawableStateFlow(@DrawableRes id: Int) = getOrCreateStateFlow(
 		typedResource = TypedResource.Drawable(id),
 		getResource = ::getDrawable,
@@ -180,12 +202,14 @@ class ResourceManagerImpl(
 				is TypedResource.Dimension            -> getDimension(id)
 				is TypedResource.DimensionPixelOffset -> getDimensionPixelOffset(id)
 				is TypedResource.DimensionPixelSize   -> getDimensionPixelSize(id)
+				is TypedResource.Float                -> getFloatOrNull(id)
 				is TypedResource.String               -> getString(id)
 				is TypedResource.QuantityString       -> getQuantityString(id, typedResource.quantity)
 				is TypedResource.Text                 -> getText(id)
 				is TypedResource.QuantityText         -> getQuantityText(id, typedResource.quantity)
 				is TypedResource.IntArray             -> getIntArray(id)
 				is TypedResource.StringArray          -> getStringArray(id)
+				is TypedResource.TextArray            -> getTextArray(id)
 				is TypedResource.Drawable             -> getDrawable(id)
 			}
 		}
@@ -243,6 +267,9 @@ private sealed interface TypedResource {
 	value class DimensionPixelSize(@DimenRes override val id: Int) : TypedResource
 
 	@JvmInline
+	value class Float(@DimenRes override val id: Int) : TypedResource
+
+	@JvmInline
 	value class String(@StringRes override val id: Int) : TypedResource
 
 	@JvmInline
@@ -291,6 +318,9 @@ private sealed interface TypedResource {
 
 	@JvmInline
 	value class StringArray(@ArrayRes override val id: Int) : TypedResource
+
+	@JvmInline
+	value class TextArray(@ArrayRes override val id: Int) : TypedResource
 
 	@JvmInline
 	value class Drawable(@DrawableRes override val id: Int) : TypedResource
