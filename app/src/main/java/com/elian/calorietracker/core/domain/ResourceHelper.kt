@@ -16,7 +16,7 @@ import kotlinx.coroutines.flow.StateFlow
  *
  * It can safely be used in classes like ViewModels.
  */
-interface ResourceManager {
+interface ResourceHelper {
 	fun getInt(@IntegerRes id: Int): Int
 	fun getBoolean(@BoolRes id: Int): Boolean
 	fun getColor(@ColorRes id: Int): Int

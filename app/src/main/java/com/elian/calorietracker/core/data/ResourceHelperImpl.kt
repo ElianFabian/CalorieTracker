@@ -14,13 +14,13 @@ import androidx.annotation.IntegerRes
 import androidx.annotation.PluralsRes
 import androidx.annotation.StringRes
 import androidx.core.content.ContextCompat
-import com.elian.calorietracker.core.domain.ResourceManager
+import com.elian.calorietracker.core.domain.ResourceHelper
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 
-class ResourceManagerImpl(
+class ResourceHelperImpl(
 	private val context: Context,
-) : ResourceManager {
+) : ResourceHelper {
 
 	private val _stateFlowByResource = mutableMapOf<TypedResource, MutableStateFlow<in Any?>>()
 

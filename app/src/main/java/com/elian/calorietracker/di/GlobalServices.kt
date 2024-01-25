@@ -4,10 +4,10 @@ import android.app.Activity
 import android.app.Application
 import android.content.Context
 import com.elian.calorietracker.CalorieTrackerApp
-import com.elian.calorietracker.core.data.ResourceManagerImpl
+import com.elian.calorietracker.core.data.ResourceHelperImpl
 import com.elian.calorietracker.core.data.app_preferences.AppPreferencesImpl
 import com.elian.calorietracker.core.data.app_preferences.dataStore
-import com.elian.calorietracker.core.domain.ResourceManager
+import com.elian.calorietracker.core.domain.ResourceHelper
 import com.elian.calorietracker.core.domain.app_preferences.AppPreferences
 import com.zhuinden.simplestack.GlobalServices
 import com.zhuinden.simplestack.ServiceBinder
@@ -29,14 +29,14 @@ fun Application.provideGlobalServices(): GlobalServices {
 
 	val applicationScope = provideApplicationScope()
 
-	val resourceManager: ResourceManager = ResourceManagerImpl(this)
+	val resourceHelper: ResourceHelper = ResourceHelperImpl(this)
 	val preferences: AppPreferences = AppPreferencesImpl(dataStore)
 
 	return GlobalServices.builder()
 		.add(applicationContext, ApplicationContextTag)
 		.add(applicationScope, ApplicationScopeTag)
 		.add(preferences)
-		.add(resourceManager)
+		.add(resourceHelper)
 		.build()
 }
 
