@@ -68,6 +68,9 @@ android {
 			excludes += "/META-INF/{AL2.0,LGPL2.1}"
 		}
 	}
+	testOptions {
+		unitTests.isIncludeAndroidResources = true
+	}
 }
 
 dependencies {
@@ -125,6 +128,11 @@ dependencies {
 kotlin.sourceSets.all {
 	languageSettings.enableLanguageFeature("DataObjects")
 	languageSettings.enableLanguageFeature("EnumEntries")
+}
+
+
+tasks.withType(Test::class) {
+	android.sourceSets.getByName("androidTest").res.srcDirs("src/androidTest/res")
 }
 
 

@@ -1,0 +1,19 @@
+<resources>
+    <string name="SimpleString">Simple string</string>
+    <string name="StringWithStringParameter_param1">String with parameters: %1$s</string>
+    <string name="StringWithIntParameter_param1">String with integer parameter: %1$d</string>
+    <string name="StringWithBooleanParameter_param1">String with boolean parameter: %1$b</string>
+    <string name="StringWithMultipleParameters_param1_param2_param3">String with multiple parameters: %1$s, %2$d, %3$b</string>
+    <string name="ArgWithStringParameter_param1">Arg with parameters: %1$s</string>
+    <string name="ArgWithIntParameter_param1">Arg with integer parameter: %1$d</string>
+    <string name="ArgWithBooleanParameter_param1">Arg with boolean parameter: %1$b</string>
+    
+    <plurals name="SimplePlural">
+        <item quantity="one">Simple plural</item>
+        <item quantity="other">Simple plurals</item>
+    </plurals>
+
+    <bool name="SimpleBoolean">true</bool>
+
+    <integer name="SimpleInteger">123456789</integer>
+</resources>
