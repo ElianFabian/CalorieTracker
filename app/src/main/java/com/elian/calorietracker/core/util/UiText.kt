@@ -3,22 +3,28 @@
 package com.elian.calorietracker.core.util
 
 import android.content.Context
+import android.os.Parcelable
 import androidx.annotation.BoolRes
 import androidx.annotation.IntegerRes
 import androidx.annotation.PluralsRes
 import androidx.annotation.StringRes
+import kotlinx.parcelize.Parcelize
+import java.io.Serializable
 
-sealed interface UiText
+sealed interface UiText : Parcelable
 
+@Parcelize
 @JvmInline
 private value class DynamicString(val value: String) : UiText
 
+@Parcelize
 private data class StringResource(
 	@StringRes
 	val resId: Int,
 	val args: List<UiTextArg?>,
 ) : UiText
 
+@Parcelize
 private data class PluralsResource(
 	@PluralsRes
 	val resId: Int,
@@ -38,11 +44,7 @@ fun UiText(value: String): UiText = when {
 
 @JvmName("UiTextNullable")
 inline fun UiText(value: String?): UiText? {
-	if (value == null) {
-		return null
-	}
-
-	return UiText(value)
+	return UiText(value ?: return null)
 }
 
 fun UiText(
@@ -102,12 +104,13 @@ inline fun Collection<UiText>.joinToCharSequence(
 	postfix: CharSequence = "",
 	limit: Int = -1,
 	truncated: CharSequence = "...",
-): String? {
+): CharSequence? {
 	if (isEmpty()) {
 		return null
 	}
 
-	return joinToString(
+	return joinTo(
+		buffer = StringBuilder(),
 		separator = separator,
 		prefix = prefix,
 		postfix = postfix,
@@ -142,23 +145,32 @@ inline fun Collection<UiText>.joinToString(
 }
 
 
-sealed interface UiTextArg
+sealed interface UiTextArg : Parcelable
 
+@Parcelize
 @JvmInline
-private value class ValueArg(val value: Any) : UiTextArg
+private value class SerializableArg(val value: Serializable) : UiTextArg
 
+@Parcelize
+@JvmInline
+private value class ParcelableArg(val value: Parcelable) : UiTextArg
+
+@Parcelize
 @JvmInline
 private value class BooleanResourceArg(@BoolRes val resId: Int) : UiTextArg
 
+@Parcelize
 @JvmInline
 private value class IntegerResourceArg(@IntegerRes val resId: Int) : UiTextArg
 
+@Parcelize
 private data class StringResourceArg(
 	@StringRes
 	val resId: Int,
 	val args: List<UiTextArg?>,
 ) : UiTextArg
 
+@Parcelize
 private data class PluralsResourceArg(
 	@PluralsRes
 	val resId: Int,
@@ -170,7 +182,8 @@ private fun UiTextArg.getValue(context: Context): Any {
 	val resources = context.resources
 
 	return when (this) {
-		is ValueArg           -> value
+		is SerializableArg    -> value
+		is ParcelableArg      -> value
 		is BooleanResourceArg -> resources.getBoolean(resId)
 		is IntegerResourceArg -> resources.getInteger(resId)
 		is StringResourceArg  -> {
@@ -207,18 +220,11 @@ fun booleanResArg(@BoolRes resId: Int): UiTextArg = BooleanResourceArg(resId)
 
 
 private inline fun valueAsArg(value: Any?): UiTextArg? = when (value) {
-	null         -> null
-	is UiTextArg -> value
-	is String,
-	is Boolean,
-	is Char,
-	is Byte,
-	is Short,
-	is Int,
-	is Long,
-	is Float,
-	is Double    -> ValueArg(value)
-	else         -> ValueArg(value.toString())
+	null            -> null
+	is UiTextArg    -> value
+	is Serializable -> SerializableArg(value)
+	is Parcelable   -> ParcelableArg(value)
+	else            -> throw IllegalArgumentException("Unsupported type: ${value::class.java}. Only Serializable, Parcelable, and UiTextArg are supported.")
 }
 
 fun uiArgsOf(vararg args: Any?): List<UiTextArg?> = args.map { arg -> valueAsArg(arg) }
