@@ -310,7 +310,7 @@ private object SpanFormatter {
 				"%"  -> cookedArg = "%"
 				"n"  -> cookedArg = "\n"
 				else -> {
-					val argIdx: Int = when (argTerm) {
+					val argIdx = when (argTerm) {
 						""   -> ++argAt
 						"<"  -> argAt
 						else -> argTerm!!.substring(0, argTerm.length - 1).toInt() - 1
