@@ -6,14 +6,14 @@ import java.util.Locale
 
 fun Application.setupLocale() {
 	val userLocale = ConfigurationCompat.getLocales(resources.configuration)[0]
-	val isUserLocaleSupported = AppBuildConfig.SUPPORTED_LANGUAGES.any { supportedLanguage ->
+	val isUserLocaleSupported = AppBuildConfig.SupportedLanguages.any { supportedLanguage ->
 		userLocale?.language.orEmpty().startsWith(supportedLanguage)
 	}
 
 	val localeToSet = if (isUserLocaleSupported) {
 		userLocale
 	}
-	else Locale(AppBuildConfig.DEFAULT_LANGUAGE)
+	else Locale(AppBuildConfig.DefaultLanguage)
 
 	val configuration = resources.configuration
 	configuration.setLocale(localeToSet)
