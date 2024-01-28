@@ -7,7 +7,7 @@
     <string name="ArgWithStringParameter_param1">Arg with parameters: %1$s</string>
     <string name="ArgWithIntParameter_param1">Arg with integer parameter: %1$d</string>
     <string name="ArgWithBooleanParameter_param1">Arg with boolean parameter: %1$b</string>
-    
+
     <plurals name="SimplePlural">
         <item quantity="one">Simple plural</item>
         <item quantity="other">Simple plurals</item>
