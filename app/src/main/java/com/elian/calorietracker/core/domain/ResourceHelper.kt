@@ -1,6 +1,7 @@
 package com.elian.calorietracker.core.domain
 
 import android.graphics.drawable.Drawable
+import android.os.Build
 import androidx.annotation.ArrayRes
 import androidx.annotation.BoolRes
 import androidx.annotation.ColorRes
@@ -8,6 +9,7 @@ import androidx.annotation.DimenRes
 import androidx.annotation.DrawableRes
 import androidx.annotation.IntegerRes
 import androidx.annotation.PluralsRes
+import androidx.annotation.RequiresApi
 import androidx.annotation.StringRes
 import kotlinx.coroutines.flow.StateFlow
 
@@ -23,7 +25,9 @@ interface ResourceHelper {
 	fun getDimension(@DimenRes id: Int): Float
 	fun getDimensionPixelOffset(@DimenRes id: Int): Int
 	fun getDimensionPixelSize(@DimenRes id: Int): Int
-	fun getFloatOrNull(@DimenRes id: Int): Float?
+
+	@RequiresApi(Build.VERSION_CODES.Q)
+	fun getFloat(@DimenRes id: Int): Float
 	fun getString(@StringRes id: Int): String
 	fun getQuantityString(@PluralsRes id: Int, quantity: Int): String
 	fun getText(@StringRes id: Int): CharSequence
@@ -39,7 +43,9 @@ interface ResourceHelper {
 	fun getDimensionStateFlow(@DimenRes id: Int): StateFlow<Float>
 	fun getDimensionPixelOffsetStateFlow(@DimenRes id: Int): StateFlow<Int>
 	fun getDimensionPixelSizeStateFlow(@DimenRes id: Int): StateFlow<Int>
-	fun getFloatStateFlow(@DimenRes id: Int): StateFlow<Float?>
+
+	@RequiresApi(Build.VERSION_CODES.Q)
+	fun getFloatStateFlow(@DimenRes id: Int): StateFlow<Float>
 	fun getStringStateFlow(@StringRes id: Int): StateFlow<String>
 	fun getQuantityStringStateFlow(@PluralsRes id: Int, quantity: Int): StateFlow<String>
 	fun getTextStateFlow(@StringRes id: Int): StateFlow<CharSequence>

@@ -12,6 +12,7 @@ import androidx.annotation.DimenRes
 import androidx.annotation.DrawableRes
 import androidx.annotation.IntegerRes
 import androidx.annotation.PluralsRes
+import androidx.annotation.RequiresApi
 import androidx.annotation.StringRes
 import androidx.core.content.ContextCompat
 import com.elian.calorietracker.core.domain.ResourceHelper
@@ -60,10 +61,8 @@ class ResourceHelperImpl(
 		return context.resources.getDimensionPixelSize(id)
 	}
 
-	override fun getFloatOrNull(@DimenRes id: Int): Float? {
-		if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
-			return null
-		}
+	@RequiresApi(Build.VERSION_CODES.Q)
+	override fun getFloat(@DimenRes id: Int): Float {
 		return context.resources.getFloat(id)
 	}
 
@@ -137,9 +136,10 @@ class ResourceHelperImpl(
 		getResource = ::getDimensionPixelSize,
 	)
 
+	@RequiresApi(Build.VERSION_CODES.Q)
 	override fun getFloatStateFlow(@DimenRes id: Int) = getOrCreateStateFlow(
 		typedResource = TypedResource.Float(id),
-		getResource = ::getFloatOrNull,
+		getResource = ::getFloat,
 	)
 
 	override fun getStringStateFlow(@StringRes id: Int) = getOrCreateStateFlow(
@@ -202,7 +202,12 @@ class ResourceHelperImpl(
 				is TypedResource.Dimension            -> getDimension(id)
 				is TypedResource.DimensionPixelOffset -> getDimensionPixelOffset(id)
 				is TypedResource.DimensionPixelSize   -> getDimensionPixelSize(id)
-				is TypedResource.Float                -> getFloatOrNull(id)
+				is TypedResource.Float                -> {
+					if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
+						return
+					}
+					getFloat(id)
+				}
 				is TypedResource.String               -> getString(id)
 				is TypedResource.QuantityString       -> getQuantityString(id, typedResource.quantity)
 				is TypedResource.Text                 -> getText(id)
