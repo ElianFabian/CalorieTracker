@@ -69,7 +69,6 @@ fun TrackedFoodItem(
 				color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.1F),
 				shape = cornerShape,
 			)
-		
 	) {
 		Image(
 			painter = rememberAsyncImagePainter(
