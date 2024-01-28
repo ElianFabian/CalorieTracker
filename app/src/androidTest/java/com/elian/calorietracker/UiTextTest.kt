@@ -211,36 +211,12 @@ class UiTextTest {
 			),
 		)
 		val actual = uiText.toString(context)
-		
-		println("$$$ test expected: $expected, actual: $actual")
 
-		assertEquals(expected, actual)
-	}
-	@kotlinx.parcelize.Parcelize
-	data class Person(val name: String, val age: Int) : Parcelable
-	private fun uwu() {
-
-		
-		val source = R.string.StringWithStringParameter_param1
-		val arg = Person("Elian", 18)
-		
-		val uiText = UiText(
-			resId = source,
-			args = uiArgsOf(arg),
-		)
-		
-		val expected = context.getString(source, arg)
-		
-		val actual = uiText.toString(context)
-		
-		println("$$$ uwu expected: $expected, actual: $actual")
-		
 		assertEquals(expected, actual)
 	}
 
 	@Test
 	fun `Test-String-resource-with-string-resource-arg-with-boolean-arg`() {
-		uwu()
 		val arg = R.string.ArgWithBooleanParameter_param1
 		val argOfArg = true
 		val source = R.string.StringWithStringParameter_param1
