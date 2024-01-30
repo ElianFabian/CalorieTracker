@@ -8,7 +8,7 @@ import com.zhuinden.simplestackextensions.services.DefaultServiceProvider
 
 abstract class ComposeFragmentKey(
 	private val serviceModule: ServiceModule? = null,
-) : DefaultFragmentKey(), Parcelable, DefaultServiceProvider.HasServices {
+) : DefaultFragmentKey(), DefaultServiceProvider.HasServices {
 
 	override fun getScopeTag(): String = toString()
 
