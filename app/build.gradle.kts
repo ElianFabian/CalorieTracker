@@ -146,7 +146,7 @@ fun getAppLocales(defaultLocale: Locale): List<Locale> {
 		}.visit {
 			if (isDirectory) {
 
-				val hasStringsXmlFile = this.file.listFiles().any {
+				val hasStringsXmlFile = this.file.listFiles().orEmpty().any {
 					it.name == "strings.xml"
 				}
 
