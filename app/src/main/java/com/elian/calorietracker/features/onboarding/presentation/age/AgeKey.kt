@@ -5,7 +5,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.elian.calorietracker.core.presentation.ext.collectAsEffectWithLifecycle
-import com.elian.calorietracker.core.presentation.simplestack.ComposeFragmentKey
+import com.elian.calorietracker.core.presentation.simplestack.FragmentKey
 import com.elian.calorietracker.core.presentation.simplestack.ComposeKeyedFragment
 import com.elian.calorietracker.core.util.ext.simplestack.rememberService
 import com.elian.calorietracker.core.util.toString
@@ -14,7 +14,7 @@ import com.elian.calorietracker.features.onboarding.presentation.OnboardingViewM
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data object AgeKey : ComposeFragmentKey() {
+data object AgeKey : FragmentKey() {
 
 	override fun instantiateFragment() = Fragment()
 

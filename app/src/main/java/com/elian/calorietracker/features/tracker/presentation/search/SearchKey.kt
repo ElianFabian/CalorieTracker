@@ -6,7 +6,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.elian.calorietracker.core.presentation.ext.collectAsEffectWithLifecycle
-import com.elian.calorietracker.core.presentation.simplestack.ComposeFragmentKey
+import com.elian.calorietracker.core.presentation.simplestack.FragmentKey
 import com.elian.calorietracker.core.presentation.simplestack.ComposeKeyedFragment
 import com.elian.calorietracker.core.util.ext.simplestack.rememberService
 import com.elian.calorietracker.core.util.toString
@@ -19,7 +19,7 @@ import java.time.LocalDate
 data class SearchKey(
 	val date: LocalDate,
 	val mealType: MealType,
-) : ComposeFragmentKey(
+) : FragmentKey(
 	serviceModule = SearchServiceModule(
 		date = date,
 		mealType = mealType,

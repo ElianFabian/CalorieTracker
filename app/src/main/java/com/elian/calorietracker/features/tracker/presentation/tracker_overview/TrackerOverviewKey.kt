@@ -5,7 +5,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.lifecycleScope
-import com.elian.calorietracker.core.presentation.simplestack.ComposeFragmentKey
+import com.elian.calorietracker.core.presentation.simplestack.FragmentKey
 import com.elian.calorietracker.core.presentation.simplestack.ComposeKeyedFragment
 import com.elian.calorietracker.core.util.ext.simplestack.rememberService
 import com.elian.calorietracker.features.tracker.di.TrackerOverviewServiceModule
@@ -14,7 +14,7 @@ import kotlinx.coroutines.launch
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data object TrackerOverviewKey : ComposeFragmentKey(
+data object TrackerOverviewKey : FragmentKey(
 	serviceModule = TrackerOverviewServiceModule,
 ) {
 	override fun instantiateFragment() = Fragment()

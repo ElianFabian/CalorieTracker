@@ -6,7 +6,7 @@ import com.zhuinden.simplestack.ServiceBinder
 import com.zhuinden.simplestackextensions.fragments.DefaultFragmentKey
 import com.zhuinden.simplestackextensions.services.DefaultServiceProvider
 
-abstract class ComposeFragmentKey(
+abstract class FragmentKey(
 	private val serviceModule: ServiceModule? = null,
 ) : DefaultFragmentKey(), DefaultServiceProvider.HasServices {
 
