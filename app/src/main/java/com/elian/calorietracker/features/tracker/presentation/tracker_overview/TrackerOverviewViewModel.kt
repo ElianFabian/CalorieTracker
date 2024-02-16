@@ -9,12 +9,15 @@ import com.zhuinden.simplestack.Backstack
 import com.zhuinden.simplestack.Bundleable
 import com.zhuinden.simplestack.ScopedServices
 import com.zhuinden.statebundle.StateBundle
-import kotlinx.coroutines.Job
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.flow.flatMapConcat
+import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
@@ -35,18 +38,9 @@ class TrackerOverviewViewModel(
 	private val _state = MutableStateFlow(TrackerOverviewState())
 	val state = _state.asStateFlow()
 
-	private var _foodsForDateJob: Job? = null
-
 
 	init {
-		serviceScope.launch {
-			_state
-				.map { it.date }
-				.distinctUntilChanged()
-				.collect { date ->
-					setFoodsForDate(date)
-				}
-		}
+		startCollectingFoods()
 	}
 
 
@@ -78,13 +72,16 @@ class TrackerOverviewViewModel(
 		}
 	}
 
-	private fun setFoodsForDate(date: LocalDate) {
-		_foodsForDateJob?.cancel()
-
-		_foodsForDateJob = serviceScope.launch {
-			getFoodsForDate(date)
-				.collect { foods ->
-
+	@OptIn(ExperimentalCoroutinesApi::class)
+	private fun startCollectingFoods() {
+		serviceScope.launch {
+			_state
+				.map { it.date }
+				.distinctUntilChanged()
+				.flatMapLatest { date ->
+					getFoodsForDate(date)
+				}
+				.collectLatest { foods ->
 					val previousFoodsForDate = _state.value.trackedFoods
 					val wasFoodAdded = foods.size > previousFoodsForDate.size
 					if (wasFoodAdded) {
