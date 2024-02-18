@@ -1,6 +1,5 @@
 package com.elian.calorietracker.core.presentation.simplestack
 
-import android.os.Parcelable
 import com.elian.calorietracker.di.ServiceModule
 import com.zhuinden.simplestack.ServiceBinder
 import com.zhuinden.simplestackextensions.fragments.DefaultFragmentKey
