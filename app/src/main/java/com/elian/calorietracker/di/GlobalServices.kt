@@ -3,12 +3,13 @@ package com.elian.calorietracker.di
 import android.app.Activity
 import android.app.Application
 import android.content.Context
-import com.elian.calorietracker.CalorieTrackerApp
+import com.elian.calorietracker.core.CalorieTrackerApp
 import com.elian.calorietracker.core.data.ResourceHelperImpl
 import com.elian.calorietracker.core.data.app_preferences.AppPreferencesImpl
 import com.elian.calorietracker.core.data.app_preferences.dataStore
 import com.elian.calorietracker.core.domain.ResourceHelper
 import com.elian.calorietracker.core.domain.app_preferences.AppPreferences
+import com.elian.calorietracker.core.presentation.MainViewModel
 import com.zhuinden.simplestack.GlobalServices
 import com.zhuinden.simplestack.ServiceBinder
 import com.zhuinden.simplestackextensions.servicesktx.add
@@ -31,12 +32,17 @@ fun Application.provideGlobalServices(): GlobalServices {
 
 	val resourceHelper: ResourceHelper = ResourceHelperImpl(this)
 	val preferences: AppPreferences = AppPreferencesImpl(dataStore)
+	
+	val mainViewModel = MainViewModel(
+		preferences = preferences,
+	)
 
 	return GlobalServices.builder()
 		.add(applicationContext, ApplicationContextTag)
 		.add(applicationScope, ApplicationScopeTag)
 		.add(preferences)
 		.add(resourceHelper)
+		.add(mainViewModel)
 		.build()
 }
 

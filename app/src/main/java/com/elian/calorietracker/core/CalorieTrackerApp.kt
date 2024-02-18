@@ -1,4 +1,4 @@
-package com.elian.calorietracker
+package com.elian.calorietracker.core
 
 import android.app.Application
 import com.elian.calorietracker.core.util.setupLocale

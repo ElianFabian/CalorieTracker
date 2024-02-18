@@ -1,11 +1,11 @@
-package com.elian.calorietracker
+package com.elian.calorietracker.core.presentation
 
 import android.os.Bundle
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
+import com.elian.calorietracker.R
 import com.elian.calorietracker.core.data.app_preferences.dataStore
-import com.elian.calorietracker.core.presentation.RootContainer
 import com.elian.calorietracker.di.globalServices
 import com.elian.calorietracker.features.onboarding.presentation.welcome.WelcomeKey
 import com.elian.calorietracker.features.tracker.presentation.tracker_overview.TrackerOverviewKey
@@ -18,6 +18,7 @@ import com.zhuinden.simplestackextensions.lifecyclektx.observeAheadOfTimeWillHan
 import com.zhuinden.simplestackextensions.navigatorktx.androidContentFrame
 import com.zhuinden.simplestackextensions.navigatorktx.backstack
 import com.zhuinden.simplestackextensions.services.DefaultServiceProvider
+import com.zhuinden.simplestackextensions.servicesktx.get
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 
@@ -28,6 +29,8 @@ class MainActivity : AppCompatActivity() {
 			backstack.goBack()
 		}
 	}
+	
+	private val viewModel by lazy { globalServices.get<MainViewModel>() }
 
 
 	override fun onCreate(savedInstanceState: Bundle?) {
@@ -50,7 +53,7 @@ class MainActivity : AppCompatActivity() {
 		val fragmentStateChanger = DefaultFragmentStateChanger(supportFragmentManager, containerId)
 
 		val showOnboarding = runBlocking {
-			dataStore.data.first().showOnboarding
+			viewModel.showOnboarding.first()
 		}
 
 		Navigator.configure()
