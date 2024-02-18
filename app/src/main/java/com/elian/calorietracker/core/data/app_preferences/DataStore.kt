@@ -1,5 +1,3 @@
-@file:JvmName("AppPreferencesImplKt")
-
 package com.elian.calorietracker.core.data.app_preferences
 
 import android.content.Context
