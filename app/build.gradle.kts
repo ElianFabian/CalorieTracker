@@ -32,7 +32,6 @@ android {
 
 		buildConfigField("String", "DEFAULT_LANGUAGE", "\"$defaultLocale\"")
 		buildConfigField("String[]", "SUPPORTED_LANGUAGES", "new String[]{$appLanguages}")
-		resourceConfigurations += appLocales.map { it.toString() }
 	}
 
 	buildTypes {
@@ -123,6 +122,7 @@ dependencies {
 	androidTestImplementation("androidx.compose.ui:ui-test-junit4")
 	debugImplementation("androidx.compose.ui:ui-tooling")
 	debugImplementation("androidx.compose.ui:ui-test-manifest")
+	//debugImplementation("com.squareup.leakcanary:leakcanary-android:2.8.1")
 }
 
 kotlin.sourceSets.all {

@@ -8,7 +8,6 @@ import com.elian.calorietracker.core.presentation.ext.collectAsEffectWithLifecyc
 import com.elian.calorietracker.core.presentation.simplestack.FragmentKey
 import com.elian.calorietracker.core.presentation.simplestack.ComposeKeyedFragment
 import com.elian.calorietracker.core.util.ext.simplestack.rememberService
-import com.elian.calorietracker.core.util.toString
 import com.elian.calorietracker.features.onboarding.presentation.OnboardingAction
 import com.elian.calorietracker.features.onboarding.presentation.OnboardingViewModel
 import kotlinx.parcelize.Parcelize
@@ -27,7 +26,7 @@ data object AgeKey : FragmentKey() {
 
 			onboardingViewModel.messageFlow
 				.collectAsEffectWithLifecycle { message ->
-					Toast.makeText(context, message.toString(requireContext()), Toast.LENGTH_SHORT).show()
+					Toast.makeText(context, message.asString(requireContext()), Toast.LENGTH_SHORT).show()
 				}
 
 			val state by onboardingViewModel.state.collectAsStateWithLifecycle()

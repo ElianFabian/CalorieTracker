@@ -23,7 +23,7 @@ data object TrackerOverviewKey : FragmentKey(
 
 		private val lazyListState = LazyListState()
 
-		override fun onBackstackIsReady() {
+		override fun onPostCreate() {
 			val viewModel = lookup<TrackerOverviewViewModel>()
 
 			lifecycleScope.launch {

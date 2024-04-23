@@ -21,8 +21,8 @@ abstract class ComposeKeyedFragment : KeyedFragment() {
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
 
-		requireActivity().window.decorView.rootView.post {
-			onBackstackIsReady()
+			requireActivity().window.decorView.rootView.post {
+			onPostCreate()
 		}
 	}
 
@@ -50,7 +50,7 @@ abstract class ComposeKeyedFragment : KeyedFragment() {
 	 *
 	 * Issue's source: https://github.com/Zhuinden/simple-stack/issues/275
 	 */
-	protected open fun onBackstackIsReady() {
+	protected open fun onPostCreate() {
 
 	}
 }
